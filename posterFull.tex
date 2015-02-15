@@ -23,15 +23,17 @@
 \usepackage{tikz}
 
 \usetikzlibrary{decorations.markings,decorations.pathreplacing}
-\usetikzlibrary{shapes.geometric,automata,positioning}
+\usetikzlibrary{shapes.geometric,shapes,automata,positioning}
 \usetikzlibrary{shadows}
+
+\newcommand{\parity}{\uplus}
 
 \begin{document}
 
 
 \begin{tikzpicture}[node distance=4.1cm,thick]
 
-\tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1.5mm, fill=green!20]
+\tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!20]
 \tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!20]
 \tikzstyle{klass}=[]
 \tikzstyle{klassNP}=[node distance=5cm]
@@ -55,7 +57,7 @@
 
 
 \fontsize{100}{33}\selectfont
-\node (titel) [anchor=north east] at (84,112) {Komplexit\"atstheorie};
+\node (titel) [anchor=north east] at (84,112) {Komplexitätstheorie};
 
 \fontsize{45}{33}\selectfont
 \node (AC0) [klass] at (25,1) {$\mathbf{AC^0}=FO$} ;
@@ -171,12 +173,12 @@
 % 
 \node (RICE) [defi,text width=24cm, anchor=north west] at (0,112) 
 {
-  \textbf{Satz von Rice} \src{(GTI  18/10)}
-  \nodepart{second} 
-  FÃ¼r jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
-  Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
-  \nodepart{third} 
-  \textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
+	\textbf{Satz von Rice} \src{(GTI  18/10)}
+	\nodepart{second} 
+	Fuer jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
+	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
+	\nodepart{third} 
+	\textbf{Komplexit\"at:} $C(S)$ ist $\mathbf{RE}$-Hart
 };
 \draw (RE) [line width=1mm] edge [] (RICE.east);
 
@@ -187,9 +189,9 @@
 % {
 %   \textbf{"\textsc{K}"} \src{(GTI  18/10)}
 %   \nodepart{second} 
-%   $K$ ist die Menger aller $\{0,1\}$-Strings $\gamma$, fÃ¼r die die Turingmascheine $M_\gamma$ die Eingabe $\gamma$ akzeptiert
+%   $K$ ist die Menger aller $\{0,1\}$-Strings $\gamma$, fÃÂ¼r die die Turingmascheine $M_\gamma$ die Eingabe $\gamma$ akzeptiert
 %   \nodepart{third} 
-%   \textbf{KomplexitÃ¤t:} RE (GTI  18/10)
+%   \textbf{Komplexit\"at:} RE (GTI  18/10)
 % };
 
 % % Halteproblem
@@ -197,46 +199,46 @@
 % {
 %   \textsf{(Allgemeines) Halteproblem} $H$ (GTI  18/19)  
 %   \nodepart{second}  
-%   $H:=\{w\#x|M_w(x)\text{ hÃ¤lt an}\}$\newline
-%   $H_0:=\{w|M_w(\varepsilon)\text{ hÃ¤lt an}\}$
+%   $H:=\{w\#x|M_w(x)\text{ h\"alt an}\}$\newline
+%   $H_0:=\{w|M_w(\varepsilon)\text{ h\"alt an}\}$
 %    \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} RE (Offensichtlich)
+%   \textbf{Komplexit\"at:} RE (Offensichtlich)
 % };
 % 
-% %PSPACE-VollstÃ¤ndige Probleme
+% %PSPACE-Vollst\"andige Probleme
 % 
 %CooridorTiling
 \node [defi,text width=24cm, anchor=north west] at (0,80) 
 {
-  \textsc{CooridorTriling} \hfill PSPACE-C
-  \nodepart{second} 
-  \textbf{Gegeben:} Kachelmenge $T$ und Zahl $c$ \newline
-  \textbf{Frage:} Gibt es eine $c\times r$-LÃ¶sung fÃ¼r $T$?
+	\textsc{CooridorTriling} \hfill $\mathbf{PSPACE}$-C
+	\nodepart{second} 
+	\textbf{Gegeben:} Kachelmenge $T$ und Zahl $c$ \newline
+	\textbf{Frage:} Gibt es eine $c\times r$-L\"osung f\"ur $T$?
 };
 
 %NFA-Containment
 \node [defi,text width=24cm, anchor=north west] at (0,70) 
 {
-  \textsc{NFA-Conteinment} \hfill PSPACE-C
-  \nodepart{second} 
-  \textbf{Gegeben:} NFAs $\mathcal{A}_1,\mathcal{A}_2$ \newline
-  \textbf{Frage:} Ist $L(\mathcal{A}_1)\subseteq L(\mathcal{A}_2)$?
+	\textsc{NFA-Conteinment} \hfill $\mathbf{PSPACE}$-C
+	\nodepart{second} 
+	\textbf{Gegeben:} NFAs $\mathcal{A}_1,\mathcal{A}_2$ \newline
+	\textbf{Frage:} Ist $L(\mathcal{A}_1)\subseteq L(\mathcal{A}_2)$?
 };
 
 
 %QBF
 \node [defi,text width=24cm, anchor=north west] at (0,60) 
 {
-  \textsc{QBF}
-  \nodepart{second} 
-  Die Menge der wahren quantifizierten aussagen-
-logischen Formeln (in Pränex-Normalform), de-
-ren quantorenfreie Matrix in KNF ist.
-  \nodepart{third}
-  \textbf{Komplexität:} PSPACE-Vollständig
+	\textsc{QBF}  \hfill $\mathbf{PSPACE}$-C 
+	\nodepart{second} 
+	Die Menge der wahren quantifizierten aussagen-
+	logischen Formeln (in Pr\"anex-Normalform), de-
+	ren quantorenfreie Matrix in KNF ist.
+	\nodepart{third}
+	\textbf{Komplexit\"at:} PSPACE-Vollst\"andig
 };
 
-%NP-VollstÃ¤ndige Probleme
+%NP-Vollst\"andige Probleme
 
 % %CliqueO
 % \node [defi] at (\leftPr+10,60) 
@@ -246,7 +248,7 @@ ren quantorenfreie Matrix in KNF ist.
 %   \newline
 %   \textbf{Gesucht:} Maximale Clique in $G$, d.h.: maximale Menge C von Knoten, die paarweise durch Kanten verbunden sind
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 % 
 % %HamiltonKreis
@@ -257,21 +259,19 @@ ren quantorenfreie Matrix in KNF ist.
 %   \newline
 %   \textbf{Frage:} Gibt es eine geschlossene Kantenfolge in $G$, die jeden Knoten genau einmal besucht? 
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 % 
-% %SAT
-% \node [defi] at (\leftPr+10,50) 
-% {
-%   \textsc{(3-)SAT} (GTI 21/06)  \nodepart{second} 
-%   \textbf{Gegeben:} Aussagenlogische Formel $\varphi$ in KNF (mit je 3 Literalen je Klausel)
-%   \newline
-%   \textbf{Frage:} Ist $\varphi$ erfÃ¼llbar?
-%   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (Cook 71, GTI 22/16)
-% };
-% 
-% %TSP
+%SAT
+\node [defi,text width=24cm, anchor=north west] at (0,52) 
+{
+	\textsc{(3-)SAT} \hfill NP-C  \nodepart{second} 
+	\textbf{Gegeben:} Aussagenlogische Formel $\varphi$ in KNF (mit je 3 Literalen je Klausel)
+	\newline
+	\textbf{Frage:} Ist $\varphi$ erf\"ullbar?
+};
+
+%TSP
 % \node [defi] at (\leftPr+10,45) 
 % {
 %   \textsc{TSP} (GTI 21/08)  \nodepart{second} 
@@ -279,7 +279,7 @@ ren quantorenfreie Matrix in KNF ist.
 %   \newline
 %   \textbf{Frage:} Hat $G$ einen Kreis durch alle Knoten mit Gewicht $\leq k$?
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 % 
 % %Col
@@ -288,118 +288,118 @@ ren quantorenfreie Matrix in KNF ist.
 %   \textsc{Col} (GTI 21/01)  \nodepart{second} 
 %   \textbf{Gegeben:} Ungerichteter Graph $G$, Zahl $k$
 %   \newline
-%   \textbf{Frage:} Lassen sich die Knoten von $G$ mit $k$ Fragen zulÃ¤ssig fÃ¤rben.
+%   \textbf{Frage:} Lassen sich die Knoten von $G$ mit $k$ Fragen zul\"assig f\"arben.
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 % 
 % %RucksackO
 % \node [defi,text width=23cm] at (\leftPr,55) 
 % {
 %   \textsc{RucksackO} \src{(GTI 21/02)}  \nodepart{second} 
-%   \textbf{Gegeben:} Gewichtsschranke $G$ und $m$ GegenstÃ¤nde reprÃ¤sentiert durch Werte $w_1,\ldots,w_m$ und Gewichte $g_1,\ldots,g_m$) \newline
+%   \textbf{Gegeben:} Gewichtsschranke $G$ und $m$ Gegenst\"ande repr\"asentiert durch Werte $w_1,\ldots,w_m$ und Gewichte $g_1,\ldots,g_m$) \newline
 %   \textbf{Gesucht:} $I\subseteq \{ 1,\ldots, m\}$, so dass $\sum_{i\in I} w_i$ maximal ist und $\sum_{i\in I} g_i \leq G$ gilt.
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 % 
-% %Tiling
-% \node [defi,text width=23cm] at (\leftPr,50) 
-% {
-%   \textsc{Tiling} \src{(KT 02/06)} \nodepart{second} 
-%   \textbf{Gegeben:} Kachelmenge $T$ und Zahlen $c,r$ (unÃ¤r kodiert!) \newline
-%   \textbf{Frage:} Gibt es eine $c\times r$-LÃ¶sung fÃ¼r $T$?
-%   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (KT 02/08)
-% };
-% 
-% % MinCycleO
+%Tiling
+\node [defi,text width=23cm,anchor=north west] at (0,90) 
+{
+	\textsc{Tiling} \hfill $\mathbf{NP}$-C \nodepart{second} 
+	\textbf{Gegeben:} Kachelmenge $T$ und Zahlen $c,r$ (un\"ar kodiert!) \newline
+	\textbf{Frage:} Gibt es eine $c\times r$-L\"osung f\"ur $T$?
+	\nodepart{third}
+	\textbf{Komplexit\"at:} NP-Vollst\"andig (KT 02/08)
+};
+
+% MinCycleO
 % \node [defi,text width=23cm] at (\leftPr,45) 
 % {
 %   \textbf{\textsc{MinCycleO}}  \nodepart{second} 
-%    \textbf{Gegeben:} Ungerichteter zusammenhÃ¤ngender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{align}$ \newline
+%    \textbf{Gegeben:} Ungerichteter zusammenh\"angender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{align}$ \newline
 %   \textbf{Gesucht:} Kreis $K\subseteq E$ durch alle Knoten mit minimalem Gesamtgewicht $\sum_{e\in K} l(e)$ (oder $\bot$)
 %   \nodepart{third}
-%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (GTI 20/07)
+%   \textbf{Komplexit\"at:} NP-Vollst\"andig (GTI 20/07)
 % };
 % 
 % P  Probleme
 % \node (MinSpanningTreeO) [defi,text width=23cm] at (70,33) 
 % {
 %   \textbf{\textsc{MinSpanningTreeO}} \hfill $\mathbf{P}$  \nodepart{second} 
-%   \textbf{Gegeben:} Ungerichteter zusammenhÃ¤ngender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{N}$ \newline
+%   \textbf{Gegeben:} Ungerichteter zusammenh\"angender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{N}$ \newline
 %   \textbf{Gesucht:} Aufspannender Baum $T\subseteq E$ von $G$ mit minimalem Gesammtgewicht $\sum_{e\in T} l(e)$ 
 % };
 % \draw (P) [line width=1mm] edge [] (MinSpanningTreeO.west);
 
 
 
-% P-VollstÃ¤ndige  Probleme
-\node (HORNSAT) [defi,text width=24cm] at (70,43) 
+% P-Vollst\"andige  Probleme
+\node (HORNSAT) [defi,text width=24cm,anchor=north west] at (0,43) 
 {
-  \textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
-  \textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
-  \textbf{Frage:} Ist $K$ erfuellbar?
+	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
+	\textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
+	\textbf{Frage:} Ist $K$ erfuellbar?
 };
 \draw (P) [line width=1mm] edge [] (HORNSAT);
 
 %NC2 Probleme
 
 %Addition
-\node (DET) [defi,rectangle split parts=1,text width=15cm] at (50,16) 
+\node (DET) [defi,rectangle split parts=1,text width=15cm] at (50,27) 
 { 
-  \textbf{\textsc{Determinante}} \hfill $\mathbf{NC^2}$
+	\textbf{\textsc{Determinante}} \hfill $\mathbf{NC^2}$
 };
 \draw (NC2) [line width=1mm] edge [] (DET.west);
 
-%LOGCFL-VollstÃ¤ndige Probleme
+%LOGCFL-Vollst\"andige Probleme
 
 %Addition
-\node (CNFCFGWORD) [defi,rectangle split parts=1,text width=15cm] at (50,13) 
+\node (CNFCFGWORD) [defi,rectangle split parts=1,text width=15cm] at (50,17) 
 { 
-  \textbf{\textsc{CNFCFGWORD}}  \hfill $\mathbf{LOGCFL}$
+	\textbf{\textsc{CNFCFGWORD}}  \hfill $\mathbf{LOGCFL}$
 };
 \draw (LOGCFL) [line width=1mm] edge (CNFCFGWORD.west);
 
-%NL-VollstÃ¤ndige Probleme
+%NL-Vollst\"andige Probleme
 
 %Reach
 \node (REACH) [defi,text width=25cm,anchor=south west] at (0,20) 
 { 
-  \textbf{\textsc{REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
-  \textbf{Gegeben:} Gerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
-  \textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
+	\textbf{\textsc{REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
+	\textbf{Gegeben:} Gerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
+	\textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
 };
 \draw (NL) [line width=1mm] edge (REACH.east);
 
-%L-VollstÃ¤ndige Probleme
+%L-Vollst\"andige Probleme
 
 %UReach
 \node (UREACH) [defi,text width=25cm,anchor=south west] at (0,13) 
 { 
-  \textbf{\textsc{UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
-  \textbf{Gegeben:} Ungerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
-  \textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
+	\textbf{\textsc{UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
+	\textbf{Gegeben:} Ungerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
+	\textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
 };
 \draw (L) [line width=1mm] edge (UREACH.east);
 
-%NC1-VollstÃ¤ndige Probleme
+%NC1-Vollst\"andige Probleme
 
 %Auswertung aussagenlogischer Formeln
 \node (FVP) [defi,text width=21.2cm,anchor=west] at (0,10) 
 { 
-  \textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
-\textbf{Gegeben:} Var. freie boolesche Formel $B$ \newline
-  \textbf{Frage:} Ist $B$ wahr? 
+	\textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
+	\textbf{Gegeben:} Var. freie boolesche Formel $B$ \newline
+	\textbf{Frage:} Ist $B$ wahr? 
 };
 \draw (NC1) [line width=1mm] edge (FVP.east);
 
-%TC0-VollstÃ¤ndige Probleme
+%TC0-Vollst\"andige Probleme
 
 %Multiplikation
 \node (MULT) [defi,rectangle split parts=1,text width=17cm,anchor=south west] at (0,4) 
 { 
-  \textbf{\textsc{Multipikation}}  \hfill $\mathbf{TC^0}$-C
+	\textbf{\textsc{Multipikation}}  \hfill $\mathbf{TC^0}$-C
 };
 \draw (TC0) [line width=1mm] edge (MULT.east);
 
@@ -408,46 +408,67 @@ ren quantorenfreie Matrix in KNF ist.
 %Addition
 \node (ADD) [defi,rectangle split parts=1,text width=17cm,anchor=south west] at (0,0) 
 { 
-  \textbf{\textsc{Addition}}  \hfill $\mathbf{AC^0}$
+	\textbf{\textsc{Addition}}  \hfill $\mathbf{AC^0}$
 };
 \draw (AC0) [line width=1mm] edge (ADD.east);
 
 
 \node (TimeHierarchie) [satz,text width=24cm, anchor=south east] at (59,0) 
 {
-  \textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
-  Seien $f,g$ zeitkonstruierbar mit \newline
-$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ .\newline
-So gilt: $\mathbf{TIME(f)\subsetneq TIME(g)}$
+	\textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
+	Seien $f,g$ zeitkonstruierbar mit \newline
+	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ .\newline
+	So gilt: $\mathbf{TIME(f)\subsetneq TIME(g)}$
 };
 
 \node (SpaceHierarchie) [satz,text width=24cm, anchor=south east] at (84,0) 
 {
-  \textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
-  Seien $f,g$ zeitkonstruierbar mit \newline
-$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
-\begin{itemize}
-\item $\mathbf{SPACE(f)\subsetneq SPACE(g)}$
-\item $\mathbf{NSPACE(f)\subsetneq NSPACE(g)}$
-\end{itemize}
+	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
+	Seien $f,g$ zeitkonstruierbar mit \newline
+	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
+	\begin{itemize}
+	\item $\mathbf{SPACE(f)\subsetneq SPACE(g)}$
+	\item $\mathbf{NSPACE(f)\subsetneq NSPACE(g)}$
+	\end{itemize}
 };
 
 \node (SatzSavitch) [satz,text width=15cm, anchor=south east] at (59,6.5) 
 {
-  \textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
-  Sei $S$ platzkonstruierbar \newline und $S(n)\geq \log n$, so gilt
-$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
+	\textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
+	Sei $S$ platzkonstruierbar \newline und $S(n)\geq \log n$, so gilt
+	$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
 };
 
 \node (SatzImmerman) [satz,text width=24cm, anchor=south east] at (84,8.5) 
 {
-  \textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
-FÃ¼r jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
-$$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
+	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
+	F\"ur jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
+	$$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
 };
 
-\node [font=\Large,anchor=south east] at (84,0) {Poster von Kai Sauerwald};
-\tikzstyle{hier}=[node distance=2cm]
+\node (SatzAlternation) [satz,text width=24cm, anchor=south east] at (84,33) 
+{
+	\textbf{Satz} \hfill Chandra, Kozen, Stockmeyer   \nodepart{second} 
+	\begin{enumerate}[(a)]
+	\item Ist $S(n)=\Omega(\log n)$, so gilt $\mathbf{ASPACE(S)\subseteq TIME(2^{\mathcal{O}(S)})}$
+	\item Ist $S(n)=\Omega(n)$, so gilt $\mathbf{TIME(S)\subseteq ASPACE(2^{\log S})}$
+	\end{enumerate}
+};
+
+\node (SatzOp) [satz,text width=19cm, anchor=south east] at (84,95) 
+{
+	\textbf{Satz}   \nodepart{second} 
+	Sei $\mathcal{C}$ unter Turing-Reduktion abgeschlossen. Dann gilt:
+	\begin{enumerate}[(a)]
+	\item $\mathbf{BP\cdot BP\cdot \mathcal{C}\subseteq BF\cdot \mathcal{C}}$
+	\item $\mathbf{\parity\cdot\parity\cdot\mathcal{C}\subseteq \parity\cdot \mathcal{C}}$
+	\item $\mathbf{\parity\cdot BP\cdot\mathcal{C}\subseteq BP\cdot \parity\cdot \mathcal{C}}$
+	\item $\mathbf{BP\cdot\mathcal{C}}$ und $\parity\cdot\mathbf{\mathcal{C}}$ sind unter Turing-Reduktion abgeschlossen
+	\end{enumerate}
+};
+
+\node [font=\normalsize,anchor=south east,text width=8cm,align=right] at (84,0) {Poster von Kai Sauerwald\\ Nach Folien von Prof. Schwentick};
+\tikzstyle{hier}=[node distance=1cm]
 
 \node (time) at (72,17) {$\mathbf{TIME(f)}$};
 \node (coNTime) [hier,above left =of time] {$\mathbf{co-NTIME(f)}$};
@@ -465,5 +486,42 @@ $$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
 \draw (nspace) [kEdge] edge (time2e) ;
 \draw (nspace) [kEdge] edge (space2) ;
 
+
+\node (fPvsNP) [rotate=90] at (66,77) {Falls $\mathbf{P\neq NP}$ gilt:};
+\node (PO) at (70,70) {$\mathbf{PO}$} ;
+\node (FPTAS) [hier,above =of PO] {$\mathbf{FPTAS}$} ;
+\node (PTAS) [hier,above =of FPTAS] {$\mathbf{PTAS}$} ;
+\node (APX) [hier,above =of PTAS] {$\mathbf{APX}$} ;
+\node (NPO) [hier,above =of APX] {$\mathbf{NPO}$} ;
+\draw (PO) edge [kEdge,-|] (FPTAS);
+\draw (FPTAS) edge [kEdge,-|] (PTAS);
+\draw (PTAS) edge [kEdge,-|] (APX);
+\draw (APX) edge [kEdge,-|] (NPO);
+
+
+\node (fpt) at (70,50) {$\mathbf{FPT}$};
+\node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
+\node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
+\node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
+\node (wP) [hier,above =of wSAT] {$\mathbf{W[P]}$};
+\node (paraNP) [hier,above =of wP] {$\mathbf{paraNP}$};
+
+\node (a2) [node distance=2cm,right =of w2] {$\mathbf{A[2]}$};
+\node (aStar) [node distance=2cm,right  =of wP] {$\mathbf{AW[*]}$};
+\node (XP) [hier,above =of aStar] {$\mathbf{XP}$};
+
+\draw (fpt) edge [kEdge] (w1);
+\draw (w1) edge [kEdge] (w2);
+\draw (w2) edge [kEdge,->] (a2);
+\draw (w2) edge [kEdge,dashed] (wSAT);
+\draw (wSAT) edge [kEdge] (wP);
+\draw (wP) edge [kEdge] (paraNP);
+
+\draw (w1) edge [kEdge] (a2);
+\draw (a2) edge [kEdge,dashed] (aStar);
+\draw (aStar) edge [kEdge] (XP);
+
+\draw (wSAT) edge [kEdge,->] (aStar);
+\draw (wP) edge [kEdge,->] (XP);
 \end{tikzpicture}
 \end{document}
