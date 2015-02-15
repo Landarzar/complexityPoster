@@ -248,7 +248,7 @@ at (UREACH.north west)
 \node (CNFCFGWORD) [defi2,rectangle split parts=1,text width=\probW, anchor=south west] 
 at (REACH.north west) 
 { 
-	\textbf{\textsc{CNFCFGWORD}}  \hfill $\mathbf{LOGCFL}$
+	\textbf{\textsc{CNFCFGWORD}}  \hfill in $\mathbf{LOGCFL}$
 };
 \draw (LOGCFL) [line width=1mm] edge (CNFCFGWORD.east);
 
@@ -258,7 +258,7 @@ at (REACH.north west)
 \node (DET) [defi,rectangle split parts=1,text width=\probW, anchor=south west] 
 at (CNFCFGWORD.north west) 
 { 
-	\textbf{\textsc{Determinante}} \hfill $\mathbf{NC^2}$
+	\textbf{\textsc{Determinante}} \hfill in $\mathbf{NC^2}$
 };
 \draw (NC2) [line width=1mm] edge [] (DET.east);
 
@@ -376,7 +376,7 @@ at (TSP.south west)
 \node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
 \node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
 \node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
-\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)=co-NSPACE(f)}$};
+\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)}=\mathbf{coNSPACE(f)}$};
 \node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
 \node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
 
@@ -423,7 +423,7 @@ at (SatzSavitch.north east)
 {
 	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
 	F\"ur jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
-	$$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
+	$$ \mathbf{NSPACE(S)}=\mathbf{coNSPACE(S)} $$
 };
 
 \node (SatzAlternation) [satz,text width=\satzW, anchor=south east] 
@@ -489,8 +489,11 @@ at ([yshift=3cm]SatzAlternation.north east)
 %%%%%%%%%%%%%%%%
 % NPO Hierarchie
 %%%%%%%%%%%%%%%%
+\fontsize{45}{33}\selectfont
 
-\node (fPvsNP) [rotate=90] at ([xshift=-15cm, yshift=35cm] current page.east) {Falls $\mathbf{P\neq NP}$ gilt:};
+\node (fPvsNP) [rotate=90, anchor=north west] at ([yshift=17cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
+
+\node (fPvsNP) [rotate=90, anchor=north west] at ([xshift=2cm,yshift=17cm] SatzAlternation.north west) {Falls $\mathbf{P\neq NP}$ gilt:};
 \node (PO) [anchor=south east] at ([xshift=-15cm] PCP.north east) {$\mathbf{PO}$} ;
 \node (FPTAS) [hier,above =of PO] {$\mathbf{FPTAS}$} ;
 \node (PTAS) [hier,above =of FPTAS] {$\mathbf{PTAS}$} ;
