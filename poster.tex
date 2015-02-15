@@ -37,7 +37,8 @@
 \begin{tikzpicture}[node distance=\ND,thick, remember picture, overlay]
 \tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!60]
 \tikzstyle{defi2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!40]
-\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!20]
+\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!50]
+\tikzstyle{satz2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!30]
 \tikzstyle{klass}=[]
 \tikzstyle{klassNP}=[node distance=5cm]
 \tikzstyle{kEdge}=[line width=2mm]
@@ -61,7 +62,7 @@
 %%%%%%%%%%%%%%%
 
 \fontsize{45}{33}\selectfont
-\node (AC0) [klass, anchor=south west] at ([xshift=39cm,yshift=2cm] current page.south west) {$\mathbf{AC^0}$} ;
+\node (AC0) [klass, anchor=south] at ([xshift=-1cm,yshift=2cm] current page.south) {$\mathbf{AC^0}$} ;
 % \node (ACC0) [klass,above of= AC0] {$\mathbf{ACC^0}$} ;
 \node (TC0) [klass,above  of= AC0] {$\mathbf{TC^0}$} ;
 \node (NC1) [klass,above of= TC0] {$\mathbf{NC^1}$} ;
@@ -107,8 +108,8 @@
 
 \node (AH) [klass,color=gray,above of= R, node distance=1.5*\ND]{Arithmetische Hierarchie} ;
 
-\node (REG) [klass, right =of TC0] {$\mathbf{REG}$};
-\node (CFL) [klass,above =of REG] {$\mathbf{CFL}$};
+%\node (REG) [klass, right =of TC0] {$\mathbf{REG}$};
+%\node (CFL) [klass,above =of REG] {$\mathbf{CFL}$};
 
 % \node (POLYLOGSPACE) [sideklass,left of= coRP] {$\mathbf{POLYLOGSPACE}$};
 %\node (Ppp) [left =of PSPACE] {$\mathbf{P^{PP}=P^{\#P}}$};
@@ -123,9 +124,9 @@
 \draw (L) [kEdge]edge  (NL);
 \draw (NL)[kEdge] edge  (LOGCFL);
 \draw (LOGCFL)[kEdge] edge  (AC1);
-\draw (CFL) [kEdge]edge  (LOGCFL);
-\draw (REG) [kEdge]edge  (NC1);
-\draw (REG)[kEdge] edge  (CFL);
+%\draw (CFL) [kEdge]edge  (LOGCFL);
+%\draw (REG) [kEdge]edge  (NC1);
+%\draw (REG)[kEdge] edge  (CFL);
 \draw (AC1) [kEdge]edge  (TC1);
 \draw (TC1) [kEdge]edge  (NC2);
 \draw (NC2)[kEdge,dashed] edge  (ACi);
@@ -268,7 +269,7 @@ at  ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
 {
 	\textbf{Satz von Rice} \src{(GTI  18/10)}
 	\nodepart{second} 
-	Fuer jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
+	Für jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
 	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
 	\nodepart{third} 
 	\textbf{Komplexit\"at:} $C(S)$ ist $\mathbf{RE}$-Hart
@@ -296,7 +297,7 @@ at  (2PTiling.south west)
 	\textbf{Gegeben:} Die Menge der wahren quantifizierten aussagen-
 	logischen Formeln (in Pr\"anex-Normalform), de-
 	ren quantorenfreie Matrix in KNF ist.\newline
-	\textbf{Frage:} Ist $K$ erfuellbar?
+	\textbf{Frage:} Ist $K$ erfüllbar?
 	\nodepart{third}
 	\textbf{Komplexit\"at:} PSPACE-Vollst\"andig
 };
@@ -349,7 +350,7 @@ at (TSP.south west)
 {
 	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
 	\textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
-	\textbf{Frage:} Ist $K$ erfuellbar?
+	\textbf{Frage:} Ist $K$ erfüllbar?
 };
 \draw (P) [line width=1mm] edge [] (HORNSAT);
 
@@ -363,26 +364,155 @@ at (TSP.south west)
 %   \textbf{Komplexit\"at:} NP-Vollst\"andig
 % };
 
+
+\def\satzW{32cm}
+
+%%%%%%%%%%%%%%%%
+% Sätze
+%%%%%%%%%%%%%%%%
+
+\fill [fill=blue!30] (HORNSAT.south west) -- (HORNSAT.south east) -- (DET.north east) -- (DET.north west) -- cycle ;
+\node (time) [anchor=south] at ( DET.north) {$\mathbf{TIME(f)}$};
+\node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
+\node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
+\node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
+\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)=co-NSPACE(f)}$};
+\node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
+\node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
+
+\draw (time) [kEdge] edge (coNTime) ;
+\draw (time) [kEdge] edge (NTime) ;
+\draw (coNTime) [kEdge] edge (space) ;
+\draw (NTime) [kEdge] edge (space) ;
+\draw (space) [kEdge] edge (nspace) ;
+\draw (nspace) [kEdge] edge (time2e) ;
+\draw (nspace) [kEdge] edge (space2) ;
+
+
+\node (TimeHierarchie) [satz,text width=\satzW, anchor=south east] 
+at ([xshift=-1.5cm,yshift=1.5cm] current page.south east) 
+{
+	\textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
+	Seien $f,g$ zeitkonstruierbar mit 
+	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ .\newline
+	So gilt: $\mathbf{TIME(f)\subsetneq TIME(g)}$
+};
+
+\node (SpaceHierarchie) [satz2,text width=\satzW, anchor=south east] 
+at (TimeHierarchie.north east) 
+{
+	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
+	Seien $f,g$ zeitkonstruierbar mit \newline
+	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
+	\begin{itemize}
+	\item $\mathbf{SPACE(f)\subsetneq SPACE(g)}$
+	\item $\mathbf{NSPACE(f)\subsetneq NSPACE(g)}$
+	\end{itemize}
+};
+
+\node (SatzSavitch) [satz,text width=\satzW, anchor=south east] 
+at (SpaceHierarchie.north east) 
+{
+	\textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
+	Sei $S$ platzkonstruierbar und $S(n)\geq \log n$, so gilt
+	$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
+};
+
+\node (SatzImmerman) [satz2,text width=\satzW, anchor=south east] 
+at (SatzSavitch.north east) 
+{
+	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
+	F\"ur jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
+	$$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
+};
+
+\node (SatzAlternation) [satz,text width=\satzW, anchor=south east] 
+at (SatzImmerman.north east) 
+{
+	\textbf{Satz} \hfill Chandra, Kozen, Stockmeyer   \nodepart{second} 
+	\begin{enumerate}[(a)]
+	\item Ist $S(n)=\Omega(\log n)$, so gilt $\mathbf{ASPACE(S)\subseteq TIME(2^{\mathcal{O}(S)})}$
+	\item Ist $S(n)=\Omega(n)$, so gilt $\mathbf{TIME(S)\subseteq ASPACE(2^{\log S})}$
+	\end{enumerate}
+};
+
+
+
+%%%%%%%%%%%%%%%%
+% NP-Charakterisierung
+%%%%%%%%%%%%%%%%
+
+
+\fontsize{35}{25}\selectfont
+
+\filldraw [fill=blue!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+
+\node [rotate=90, anchor=north west] at (SatzAlternation.north west) {
+	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
+
+\node (npchar) [anchor=south west] at ([xshift=2.5cm]SatzAlternation.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
+
+\node (mBPP) at ([xshift=1cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
+
+\node (MA) at ([xshift=4cm,yshift=3cm] npchar.north west) {$\mathbf{MA}$};
+
+\node (AM) at ([yshift=2.5cm] MA.north) {$\mathbf{AM}$};
+
+
+\node (Spi2) at ([yshift=2.5cm] AM.north) {$\mathbf{\Sigma^p_2}$};
+
+
+\node (IP) at ([xshift=-2cm,yshift=2.5cm] Spi2.north) {$\mathbf{PSPACE}=\mathbf{IP}$};
+
+\draw (mBPP) edge (MA);
+\draw ([xshift=-8cm]npchar.north) edge (MA);
+
+\draw (MA) edge (AM);
+\draw (AM) edge (Spi2);
+\draw (Spi2) edge (IP);
+
+
+% Das PCP Theorem
+\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=south east]
+at ([yshift=3cm]SatzAlternation.north east) 
+{
+	\textbf{PCP} \textit{probabilistically checkable proof} \nodepart{second} 
+	Die Klasse $PCP(\mathcal{F},\mathcal{G})$ der Sprachen $L$ für die es einen Verifizierer $V$ gibt der
+	\begin{itemize}
+	\item $\leq r(n)$ Zufallsbits verwendet \hfill($r\in\mathcal{F}$)
+	\item $\leq q(n)$ Bits der Eingabe ließt \hfill($q\in\mathcal{G}$)
+	\item für eine Beweis $\pi$ alles aus $L$ akzeptiert.
+	\item und für jeden Beweis kein $x\notin L$ mit W'keit $>\frac{1}{2}$ akzeptiert.
+	\end{itemize}
+};
+
 %%%%%%%%%%%%%%%%
 % NPO Hierarchie
 %%%%%%%%%%%%%%%%
 
 \node (fPvsNP) [rotate=90] at ([xshift=-15cm, yshift=35cm] current page.east) {Falls $\mathbf{P\neq NP}$ gilt:};
-\node (PO) at ([xshift=-10cm, yshift=30cm] current page.east) {$\mathbf{PO}$} ;
+\node (PO) [anchor=south east] at ([xshift=-15cm] PCP.north east) {$\mathbf{PO}$} ;
 \node (FPTAS) [hier,above =of PO] {$\mathbf{FPTAS}$} ;
 \node (PTAS) [hier,above =of FPTAS] {$\mathbf{PTAS}$} ;
 \node (APX) [hier,above =of PTAS] {$\mathbf{APX}$} ;
 \node (NPO) [hier,above =of APX] {$\mathbf{NPO}$} ;
+
 \draw (PO) edge [kEdge,-|] (FPTAS);
 \draw (FPTAS) edge [kEdge,-|] (PTAS);
 \draw (PTAS) edge [kEdge,-|] (APX);
 \draw (APX) edge [kEdge,-|] (NPO);
 
+\node (minTSP) at ([xshift=7cm] NPO.east) {$\mathbf{min}\text{-}\mathbf{TSP}$};
+\draw (NPO.east) edge [kEdge,loosely dotted] (minTSP.west);
+
+\node (max3SAT) at ([xshift=7cm] APX.east) {$\mathbf{max}\text{-}\mathbf{3}\text{-}\mathbf{SAT}$};
+\draw (APX.east) edge [kEdge,loosely dotted] (max3SAT.west);
+
 %%%%%%%%%%%%%%
 % W-Hierarchie
 %%%%%%%%%%%%%%
 
-\node (fpt) at ([xshift=-15cm]current page.east) {$\mathbf{FPT}$};
+\node (fpt) at ([xshift=-30cm,yshift=20cm]current page.east) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
 \node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
 \node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
@@ -406,28 +536,6 @@ at (TSP.south west)
 
 \draw (wSAT) edge [kEdge,->] (aStar);
 \draw (wP) edge [kEdge,->] (XP);
-
-%%%%%%%%%%%%%%%%
-% Sätze
-%%%%%%%%%%%%%%%%
-
-\fill [fill=blue!20] (HORNSAT.south west) -- (HORNSAT.south east) -- (DET.north east) -- (DET.north west) -- cycle ;
-\node (time) [anchor=south] at ( DET.north) {$\mathbf{TIME(f)}$};
-\node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
-\node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
-\node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
-\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)=co-NSPACE(f)}$};
-\node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
-\node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
-
-\draw (time) [kEdge] edge (coNTime) ;
-\draw (time) [kEdge] edge (NTime) ;
-\draw (coNTime) [kEdge] edge (space) ;
-\draw (NTime) [kEdge] edge (space) ;
-\draw (space) [kEdge] edge (nspace) ;
-\draw (nspace) [kEdge] edge (time2e) ;
-\draw (nspace) [kEdge] edge (space2) ;
-
 
 \end{tikzpicture}
 	
