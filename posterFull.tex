@@ -1,0 +1,469 @@
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+%\usepackage[scaled=0.85]{beramono}
+\usepackage{ucs}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[ngerman]{babel}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{a0paper, top=0mm, inner=0mm, outer=0mm, bottom=0mm, headsep=0mm, footskip=0mm}
+%\usepackage[bold,full]{complexity}
+\usepackage{tikz}
+
+\usetikzlibrary{decorations.markings,decorations.pathreplacing}
+\usetikzlibrary{shapes.geometric,automata,positioning}
+\usetikzlibrary{shadows}
+
+\begin{document}
+
+
+\begin{tikzpicture}[node distance=4.1cm,thick]
+
+\tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1.5mm, fill=green!20]
+\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!20]
+\tikzstyle{klass}=[]
+\tikzstyle{klassNP}=[node distance=5cm]
+\tikzstyle{kEdge}=[line width=2mm]
+\tikzstyle{sideklass}=[node distance = 11cm,]
+% \newcommand{\src}[1]{#1}
+\newcommand{\src}[1]{}
+
+\def\leftPr{37.5}
+\def\rightPr{18.5}
+
+\draw [very thick,draw,black] (0,0) -- (0,112) -- (84,112) -- (84,0) -- (0,0);
+
+
+
+
+\node [font=\Huge] at (0,0) {};
+\node [font=\Huge] at (83,110) {};
+\node [font=\Huge] at (83,0) {};
+\node [font=\Huge] at (0,110) {};
+
+
+\fontsize{100}{33}\selectfont
+\node (titel) [anchor=north east] at (84,112) {Komplexit\"atstheorie};
+
+\fontsize{45}{33}\selectfont
+\node (AC0) [klass] at (25,1) {$\mathbf{AC^0}=FO$} ;
+% \node (ACC0) [klass,above of= AC0] {$\mathbf{ACC^0}$} ;
+\node (TC0) [klass,above  of= AC0] {$\mathbf{TC^0}$} ;
+\node (NC1) [klass,above right of= TC0] {$\mathbf{NC^1}$} ;
+
+\node (L) [klass,above  right  of= NC1] {$\mathbf{L}=\mathbf{SL}$} ;
+\node (NL) [klass,above  of= L] {$\mathbf{NL}$} ;
+\node (LOGCFL) [klass,above right of= NL] {$\mathbf{LOGCFL}$} ;
+\node (AC1) [klass,above right  of= LOGCFL] {$\mathbf{AC^1}$} ;
+\node (TC1) [klass,above  right  of= AC1] {$\mathbf{TC^1}$} ;
+\node (NC2) [klass,above of= TC1] {$\mathbf{NC^2}$} ;
+
+\node (ACi) [klass,above of= NC2] {$\mathbf{AC^i}$} ;
+\node (TCi) [klass,above left of= ACi] {$\mathbf{TC^i}$} ;
+\node (NCi) [klass,above right of= TCi] {$\mathbf{NC^{i+1}}$} ;
+
+\node (NC) [klass,above of= NCi] {$\mathbf{NC}$} ;
+
+
+\node (P) [klass,above of= NC] {$\mathbf{P=AL}$} ;
+\node (ZPP) [klass,above of= P] {$\mathbf{ZPP}$} ;
+\node (coRP) [klassNP,above left of= ZPP] {$\mathbf{coRP}$} ;
+\node (RP) [klassNP,above right of= ZPP] {$\mathbf{RP}$} ;
+\node (coNP) [klassNP,above of= coRP] {$\mathbf{coNP}$} ;
+\node (BPP) [klassNP,above right of= coRP] {$\mathbf{BPP}$} ;
+\node (NP) [klassNP,above of= RP] {$\mathbf{NP}$} ;
+
+\node (DP) [klass,above left of= coNP] {$\mathbf{DP}$} ;
+\node (TP2) [klass,above of= DP] {$\mathbf{\Theta^p_2=P^{\Sigma_{1}^p[log]}}$} ;
+\node (DP2) [klass,above of= TP2] {$\mathbf{\Delta^p_2=P^{\Sigma_{1}^p}}$} ;
+\node (SP2) [klassNP,above left of= DP2] {$\mathbf{\Sigma_2^p}$} ;
+\node (PP2) [klassNP,above right of= DP2] {$\mathbf{\Pi_2^p}$} ;
+\node (TP3) [klassNP,above left of= PP2] {$\mathbf{\Theta^p_3=P^{\Sigma_{2}^p[log]}}$} ;
+\node (DP3) [klass,above of= TP3] {$\mathbf{\Delta^p_3=P^{\Sigma_{2}^p}}$} ;
+\node (PH) [klass,above of= DP3] {$\mathbf{PH}$} ;
+
+\node (PSPACE) [klass,above of= PH] {$\mathbf{PSPACE}$} ;
+\node (EXPTIME) [klass,above of= PSPACE]{$\mathbf{EXPTIME}$} ;
+\node (ELEMENTARY) [klass,above of= EXPTIME]{$\mathbf{ELEMENTARY}$} ;
+\node (PR) [klass,above of= ELEMENTARY]{$\mathbf{PR}$} ;
+\node (R) [klass,above of= PR]{$\mathbf{R}$} ;
+\node (coRE) [klass,above right of= R] {$\mathbf{coRE} $};
+\node (RE) [klass,above left of= R] {$\mathbf{RE} $};
+
+
+\node (REG) [klass, below right of= NC1] {$\mathbf{REG}$};
+\node (CFL) [klass,right of= L,node distance=5cm] {$\mathbf{CFL}$};
+
+% \node (POLYLOGSPACE) [sideklass,left of= coRP] {$\mathbf{POLYLOGSPACE}$};
+\node (Ppp) [right =of PSPACE] {$\mathbf{P^{PP}=P^{\#P}}$};
+\node (PP) [sideklass,below of= Ppp] {$\mathbf{PP}$};
+
+% \draw (AC0) [kEdge,-|] edge   (ACC0);
+% \draw (ACC0)[kEdge] edge  (TC0);
+
+\draw (AC0) [kEdge,-|] edge   (TC0);
+\draw (TC0) [kEdge]edge  (NC1);
+\draw (NC1) [kEdge]edge  (L);
+\draw (L) [kEdge]edge  (NL);
+\draw (NL)[kEdge] edge  (LOGCFL);
+\draw (LOGCFL)[kEdge] edge  (AC1);
+\draw (CFL) [kEdge]edge  (LOGCFL);
+\draw (REG) [kEdge]edge  (NC1);
+\draw (REG)[kEdge] edge  (CFL);
+\draw (AC1) [kEdge]edge  (TC1);
+\draw (TC1) [kEdge]edge  (NC2);
+\draw (NC2)[kEdge,dashed] edge  (ACi);
+\draw (ACi)[kEdge] edge  (TCi);
+\draw (TCi) [kEdge]edge  (NCi);
+\draw (NCi) [kEdge,dashed]edge  (NC);
+\draw (NC) [kEdge]edge  (P);
+\draw (P) [kEdge]edge  (ZPP);
+\draw (ZPP) [kEdge]edge  (coRP);
+\draw (coRP) [kEdge]edge  (coNP);
+\draw (coRP) [kEdge]edge  (BPP);
+\draw (ZPP) [kEdge]edge  (RP);
+\draw (RP) [kEdge]edge  (BPP);
+\draw (RP) [kEdge]edge  (NP);
+\draw (coNP) [kEdge]edge  (DP);
+\draw (NP) [kEdge]edge  (DP);
+\draw (coNP)[kEdge] edge  (PP);
+\draw (BPP) [kEdge]edge  (PP);
+\draw (NP) [kEdge]edge  (PP);
+\draw (DP) [kEdge]edge  (TP2);
+\draw (TP2)[kEdge] edge  (DP2);
+\draw (DP2) [kEdge]edge  (SP2);
+\draw (SP2) [kEdge]edge  (TP3);
+\draw (DP2)[kEdge] edge  (PP2);
+\draw (PP2)[kEdge] edge  (TP3);
+\draw (TP3) [kEdge]edge  (DP3);
+\draw (DP3) [kEdge,dashed]edge  (PH);
+\draw (PH) [kEdge]edge  (PSPACE);
+
+
+\draw (PSPACE) [kEdge]edge  (EXPTIME);
+\draw (EXPTIME) [kEdge]edge  (ELEMENTARY);
+\draw (ELEMENTARY) [kEdge]edge  (PR);
+\draw (PR) [kEdge] edge  (R);
+\draw (R) [kEdge] edge  (coRE);
+\draw (R) [kEdge] edge  (RE);
+
+% \draw (P) [kEdge]edge  (POLYLOGSPACE);
+% \draw (POLYLOGSPACE) [kEdge, bend left=30]edge  (PSPACE);
+
+\draw (PH) [kEdge]edge  (Ppp);
+\draw (PP) [kEdge]edge  (Ppp);
+\draw (PP) [kEdge]edge  (PSPACE);
+
+\fontsize{35}{33}\selectfont
+% % Andere Probleme:
+% 
+\node (RICE) [defi,text width=24cm, anchor=north west] at (0,112) 
+{
+  \textbf{Satz von Rice} \src{(GTI  18/10)}
+  \nodepart{second} 
+  FÃ¼r jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
+  Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
+  \nodepart{third} 
+  \textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
+};
+\draw (RE) [line width=1mm] edge [] (RICE.east);
+
+% RE (RekursiveEnummerable ->Semi-Entscheidbar) Probleme
+% 
+% % Menge aller Strings
+% \node [defi,text width=23cm] at (\rightPr,90) 
+% {
+%   \textbf{"\textsc{K}"} \src{(GTI  18/10)}
+%   \nodepart{second} 
+%   $K$ ist die Menger aller $\{0,1\}$-Strings $\gamma$, fÃ¼r die die Turingmascheine $M_\gamma$ die Eingabe $\gamma$ akzeptiert
+%   \nodepart{third} 
+%   \textbf{KomplexitÃ¤t:} RE (GTI  18/10)
+% };
+
+% % Halteproblem
+% \node [defi] at (\rightPr,95) 
+% {
+%   \textsf{(Allgemeines) Halteproblem} $H$ (GTI  18/19)  
+%   \nodepart{second}  
+%   $H:=\{w\#x|M_w(x)\text{ hÃ¤lt an}\}$\newline
+%   $H_0:=\{w|M_w(\varepsilon)\text{ hÃ¤lt an}\}$
+%    \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} RE (Offensichtlich)
+% };
+% 
+% %PSPACE-VollstÃ¤ndige Probleme
+% 
+%CooridorTiling
+\node [defi,text width=24cm, anchor=north west] at (0,80) 
+{
+  \textsc{CooridorTriling} \hfill PSPACE-C
+  \nodepart{second} 
+  \textbf{Gegeben:} Kachelmenge $T$ und Zahl $c$ \newline
+  \textbf{Frage:} Gibt es eine $c\times r$-LÃ¶sung fÃ¼r $T$?
+};
+
+%NFA-Containment
+\node [defi,text width=24cm, anchor=north west] at (0,70) 
+{
+  \textsc{NFA-Conteinment} \hfill PSPACE-C
+  \nodepart{second} 
+  \textbf{Gegeben:} NFAs $\mathcal{A}_1,\mathcal{A}_2$ \newline
+  \textbf{Frage:} Ist $L(\mathcal{A}_1)\subseteq L(\mathcal{A}_2)$?
+};
+
+
+%QBF
+\node [defi,text width=24cm, anchor=north west] at (0,60) 
+{
+  \textsc{QBF}
+  \nodepart{second} 
+  Die Menge der wahren quantifizierten aussagen-
+logischen Formeln (in Pränex-Normalform), de-
+ren quantorenfreie Matrix in KNF ist.
+  \nodepart{third}
+  \textbf{Komplexität:} PSPACE-Vollständig
+};
+
+%NP-VollstÃ¤ndige Probleme
+
+% %CliqueO
+% \node [defi] at (\leftPr+10,60) 
+% {
+%   \textsc{CliqueO} (GTI 21/04)  \nodepart{second} 
+%   \textbf{Gegeben:} Ungerichteter Graph $G=(V,E)$
+%   \newline
+%   \textbf{Gesucht:} Maximale Clique in $G$, d.h.: maximale Menge C von Knoten, die paarweise durch Kanten verbunden sind
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+% };
+% 
+% %HamiltonKreis
+% \node [defi] at (\leftPr+10,55) 
+% {
+%   \textsc{HamiltonKreis} (GTI 21/04)  \nodepart{second} 
+%   \textbf{Gegeben:} Ungerichteter Graph $G$
+%   \newline
+%   \textbf{Frage:} Gibt es eine geschlossene Kantenfolge in $G$, die jeden Knoten genau einmal besucht? 
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+% };
+% 
+% %SAT
+% \node [defi] at (\leftPr+10,50) 
+% {
+%   \textsc{(3-)SAT} (GTI 21/06)  \nodepart{second} 
+%   \textbf{Gegeben:} Aussagenlogische Formel $\varphi$ in KNF (mit je 3 Literalen je Klausel)
+%   \newline
+%   \textbf{Frage:} Ist $\varphi$ erfÃ¼llbar?
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (Cook 71, GTI 22/16)
+% };
+% 
+% %TSP
+% \node [defi] at (\leftPr+10,45) 
+% {
+%   \textsc{TSP} (GTI 21/08)  \nodepart{second} 
+%   \textbf{Gegeben:} Entfernungsgraph $G,k\in \mathbb{N}$
+%   \newline
+%   \textbf{Frage:} Hat $G$ einen Kreis durch alle Knoten mit Gewicht $\leq k$?
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+% };
+% 
+% %Col
+% \node [defi] at (\leftPr,60) 
+% {
+%   \textsc{Col} (GTI 21/01)  \nodepart{second} 
+%   \textbf{Gegeben:} Ungerichteter Graph $G$, Zahl $k$
+%   \newline
+%   \textbf{Frage:} Lassen sich die Knoten von $G$ mit $k$ Fragen zulÃ¤ssig fÃ¤rben.
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+% };
+% 
+% %RucksackO
+% \node [defi,text width=23cm] at (\leftPr,55) 
+% {
+%   \textsc{RucksackO} \src{(GTI 21/02)}  \nodepart{second} 
+%   \textbf{Gegeben:} Gewichtsschranke $G$ und $m$ GegenstÃ¤nde reprÃ¤sentiert durch Werte $w_1,\ldots,w_m$ und Gewichte $g_1,\ldots,g_m$) \newline
+%   \textbf{Gesucht:} $I\subseteq \{ 1,\ldots, m\}$, so dass $\sum_{i\in I} w_i$ maximal ist und $\sum_{i\in I} g_i \leq G$ gilt.
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig
+% };
+% 
+% %Tiling
+% \node [defi,text width=23cm] at (\leftPr,50) 
+% {
+%   \textsc{Tiling} \src{(KT 02/06)} \nodepart{second} 
+%   \textbf{Gegeben:} Kachelmenge $T$ und Zahlen $c,r$ (unÃ¤r kodiert!) \newline
+%   \textbf{Frage:} Gibt es eine $c\times r$-LÃ¶sung fÃ¼r $T$?
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (KT 02/08)
+% };
+% 
+% % MinCycleO
+% \node [defi,text width=23cm] at (\leftPr,45) 
+% {
+%   \textbf{\textsc{MinCycleO}}  \nodepart{second} 
+%    \textbf{Gegeben:} Ungerichteter zusammenhÃ¤ngender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{align}$ \newline
+%   \textbf{Gesucht:} Kreis $K\subseteq E$ durch alle Knoten mit minimalem Gesamtgewicht $\sum_{e\in K} l(e)$ (oder $\bot$)
+%   \nodepart{third}
+%   \textbf{KomplexitÃ¤t:} NP-VollstÃ¤ndig (GTI 20/07)
+% };
+% 
+% P  Probleme
+% \node (MinSpanningTreeO) [defi,text width=23cm] at (70,33) 
+% {
+%   \textbf{\textsc{MinSpanningTreeO}} \hfill $\mathbf{P}$  \nodepart{second} 
+%   \textbf{Gegeben:} Ungerichteter zusammenhÃ¤ngender Graph $G=(V,E)$ und Funktion $l:E\to\mathbb{N}$ \newline
+%   \textbf{Gesucht:} Aufspannender Baum $T\subseteq E$ von $G$ mit minimalem Gesammtgewicht $\sum_{e\in T} l(e)$ 
+% };
+% \draw (P) [line width=1mm] edge [] (MinSpanningTreeO.west);
+
+
+
+% P-VollstÃ¤ndige  Probleme
+\node (HORNSAT) [defi,text width=24cm] at (70,43) 
+{
+  \textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
+  \textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
+  \textbf{Frage:} Ist $K$ erfuellbar?
+};
+\draw (P) [line width=1mm] edge [] (HORNSAT);
+
+%NC2 Probleme
+
+%Addition
+\node (DET) [defi,rectangle split parts=1,text width=15cm] at (50,16) 
+{ 
+  \textbf{\textsc{Determinante}} \hfill $\mathbf{NC^2}$
+};
+\draw (NC2) [line width=1mm] edge [] (DET.west);
+
+%LOGCFL-VollstÃ¤ndige Probleme
+
+%Addition
+\node (CNFCFGWORD) [defi,rectangle split parts=1,text width=15cm] at (50,13) 
+{ 
+  \textbf{\textsc{CNFCFGWORD}}  \hfill $\mathbf{LOGCFL}$
+};
+\draw (LOGCFL) [line width=1mm] edge (CNFCFGWORD.west);
+
+%NL-VollstÃ¤ndige Probleme
+
+%Reach
+\node (REACH) [defi,text width=25cm,anchor=south west] at (0,20) 
+{ 
+  \textbf{\textsc{REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
+  \textbf{Gegeben:} Gerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
+  \textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
+};
+\draw (NL) [line width=1mm] edge (REACH.east);
+
+%L-VollstÃ¤ndige Probleme
+
+%UReach
+\node (UREACH) [defi,text width=25cm,anchor=south west] at (0,13) 
+{ 
+  \textbf{\textsc{UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
+  \textbf{Gegeben:} Ungerichteter Graph $G=(V,E)$ und zwei Knoten $s,t\in V$ von $G$ \newline
+  \textbf{Frage:} Gibt es einen Weg von $s$ nach $t$ in $G$?
+};
+\draw (L) [line width=1mm] edge (UREACH.east);
+
+%NC1-VollstÃ¤ndige Probleme
+
+%Auswertung aussagenlogischer Formeln
+\node (FVP) [defi,text width=21.2cm,anchor=west] at (0,10) 
+{ 
+  \textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
+\textbf{Gegeben:} Var. freie boolesche Formel $B$ \newline
+  \textbf{Frage:} Ist $B$ wahr? 
+};
+\draw (NC1) [line width=1mm] edge (FVP.east);
+
+%TC0-VollstÃ¤ndige Probleme
+
+%Multiplikation
+\node (MULT) [defi,rectangle split parts=1,text width=17cm,anchor=south west] at (0,4) 
+{ 
+  \textbf{\textsc{Multipikation}}  \hfill $\mathbf{TC^0}$-C
+};
+\draw (TC0) [line width=1mm] edge (MULT.east);
+
+%AC0 Probleme
+
+%Addition
+\node (ADD) [defi,rectangle split parts=1,text width=17cm,anchor=south west] at (0,0) 
+{ 
+  \textbf{\textsc{Addition}}  \hfill $\mathbf{AC^0}$
+};
+\draw (AC0) [line width=1mm] edge (ADD.east);
+
+
+\node (TimeHierarchie) [satz,text width=24cm, anchor=south east] at (59,0) 
+{
+  \textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
+  Seien $f,g$ zeitkonstruierbar mit \newline
+$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ .\newline
+So gilt: $\mathbf{TIME(f)\subsetneq TIME(g)}$
+};
+
+\node (SpaceHierarchie) [satz,text width=24cm, anchor=south east] at (84,0) 
+{
+  \textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
+  Seien $f,g$ zeitkonstruierbar mit \newline
+$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
+\begin{itemize}
+\item $\mathbf{SPACE(f)\subsetneq SPACE(g)}$
+\item $\mathbf{NSPACE(f)\subsetneq NSPACE(g)}$
+\end{itemize}
+};
+
+\node (SatzSavitch) [satz,text width=15cm, anchor=south east] at (59,6.5) 
+{
+  \textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
+  Sei $S$ platzkonstruierbar \newline und $S(n)\geq \log n$, so gilt
+$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
+};
+
+\node (SatzImmerman) [satz,text width=24cm, anchor=south east] at (84,8.5) 
+{
+  \textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
+FÃ¼r jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
+$$ \mathbf{NSPACE(S)=co-NSPACE(S)} $$
+};
+
+\node [font=\Large,anchor=south east] at (84,0) {Poster von Kai Sauerwald};
+\tikzstyle{hier}=[node distance=2cm]
+
+\node (time) at (72,17) {$\mathbf{TIME(f)}$};
+\node (coNTime) [hier,above left =of time] {$\mathbf{co-NTIME(f)}$};
+\node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
+\node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
+\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)=co-NSPACE(f)}$};
+\node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
+\node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
+
+\draw (time) [kEdge] edge (coNTime) ;
+\draw (time) [kEdge] edge (NTime) ;
+\draw (coNTime) [kEdge] edge (space) ;
+\draw (NTime) [kEdge] edge (space) ;
+\draw (space) [kEdge] edge (nspace) ;
+\draw (nspace) [kEdge] edge (time2e) ;
+\draw (nspace) [kEdge] edge (space2) ;
+
+\end{tikzpicture}
+\end{document}
