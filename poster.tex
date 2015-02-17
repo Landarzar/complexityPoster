@@ -272,7 +272,7 @@ at  ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
 	Für jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
 	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
 	\nodepart{third} 
-	\textbf{Komplexit\"at:} $C(S)$ ist $\mathbf{RE}$-Hart
+	\textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
 };
 %\draw (RE) [line width=1mm] edge [] (RICE.west);
 
@@ -294,12 +294,10 @@ at  (2PTiling.south west)
 {
 	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
-	\textbf{Gegeben:} Die Menge der wahren quantifizierten aussagen-
-	logischen Formeln (in Pr\"anex-Normalform), de-
-	ren quantorenfreie Matrix in KNF ist.\newline
+	\textbf{Gegeben:} Quantifizierte $AL$-Formel $\varphi$ (in Pränex-Normalform und KNF).\newline
 	\textbf{Frage:} Ist $K$ erfüllbar?
 	\nodepart{third}
-	\textbf{Komplexit\"at:} PSPACE-Vollst\"andig
+	\textbf{Komplexität:} PSPACE-Vollständig
 };
 \draw (QBF) [line width=1mm] edge [] (PSPACE);
 
@@ -361,7 +359,7 @@ at (TSP.south west)
 %   \newline
 %   \textbf{Frage:} Hat $G$ einen Kreis durch alle Knoten mit Gewicht $\leq k$?
 %   \nodepart{third}
-%   \textbf{Komplexit\"at:} NP-Vollst\"andig
+%   \textbf{Komplexität:} NP-Vollständig
 % };
 
 
@@ -422,7 +420,7 @@ at (SpaceHierarchie.north east)
 at (SatzSavitch.north east) 
 {
 	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
-	F\"ur jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
+	Für jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
 	$$ \mathbf{NSPACE(S)}=\mathbf{coNSPACE(S)} $$
 };
 
