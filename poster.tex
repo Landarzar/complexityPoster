@@ -106,7 +106,7 @@
 \node (coRE) [klass,above right of= R] {$\mathbf{coRE} $};
 \node (RE) [klass,above left of= R] {$\mathbf{RE} $};
 
-\node (AH) [klass,color=gray,above of= R, node distance=1.5*\ND]{Arithmetische Hierarchie} ;
+\node (AH) [klass,color=gray,above of= R, node distance=2*\ND]{Arithmetische Hierarchie} ;
 
 %\node (REG) [klass, right =of TC0] {$\mathbf{REG}$};
 %\node (CFL) [klass,above =of REG] {$\mathbf{CFL}$};
@@ -114,6 +114,7 @@
 % \node (POLYLOGSPACE) [sideklass,left of= coRP] {$\mathbf{POLYLOGSPACE}$};
 %\node (Ppp) [left =of PSPACE] {$\mathbf{P^{PP}=P^{\#P}}$};
 %\node (PP) [sideklass,below of= Ppp] {$\mathbf{PP}$};
+\node (PP) at ([xshift=2cm,yshift=-3cm]PSPACE.south east) {$\mathbf{PP}$};
 
 % \draw (AC0) [kEdge,-|] edge   (ACC0);
 % \draw (ACC0)[kEdge] edge  (TC0);
@@ -144,7 +145,7 @@
 \draw (coNP) [kEdge]edge  (DP);
 \draw (NP) [kEdge]edge  (DP);
 %\draw (coNP)[kEdge] edge  (PP);
-%\draw (BPP) [kEdge]edge  (PP);
+\draw (BPP) [color=black!20,bend right=20,kEdge]edge  (PP);
 %\draw (NP) [kEdge]edge  (PP);
 \draw (DP) [kEdge]edge  (TP2);
 \draw (TP2)[kEdge] edge  (DP2);
@@ -169,7 +170,7 @@
 
 %\draw (PH) [kEdge]edge  (Ppp);
 %\draw (PP) [kEdge]edge  (Ppp);
-%\draw (PP) [kEdge]edge  (PSPACE);
+\draw (PP) [kEdge]edge  (PSPACE);
 
 %\node (time) at (72,17) {$\mathbf{TIME(f)}$};
 %\node (coNTime) [hier,above left =of time] {$\mathbf{co-NTIME(f)}$};
@@ -198,7 +199,7 @@
 \node (ADD) [defi,rectangle split parts=1,text width=\probW,anchor=south west] 
 at ([xshift=1.5cm, yshift=1.5cm] current page.south west) 
 { 
-	\textbf{\textsc{Addition}}  \hfill $\mathbf{AC^0}$
+	\textbf{\textsc{Addition}}  \hfill in $\mathbf{AC^0}$
 };
 \draw (AC0) [line width=1mm] edge (ADD.east);
 
@@ -245,48 +246,67 @@ at (UREACH.north west)
 \draw (NL.west) [line width=1mm] edge (REACH.east);
 
 %LOGCFL-Vollständige Probleme
-\node (CNFCFGWORD) [defi2,rectangle split parts=1,text width=\probW, anchor=south west] 
+\node (acyclicCSP) [defi2,text width=\probW,anchor=south west] 
 at (REACH.north west) 
 { 
-	\textbf{\textsc{CNFCFGWORD}}  \hfill in $\mathbf{LOGCFL}$
+	\textbf{\textsc{AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
+	\textbf{Gegeben:} Variablenmenge $V$, Domäne $U$, Menge von Constaints $\mathcal{C}$ \newline
+	\textbf{Frage:} Gibt es eine Lösung $\sigma\subseteq V\times U$, so dass $\sigma(\mathcal{C})$ wahr wird?
 };
-\draw (LOGCFL) [line width=1mm] edge (CNFCFGWORD.east);
+\draw ([xshift=-2cm] LOGCFL.north) [line width=1mm] edge (acyclicCSP.east);
 
 
 %NC2 Probleme
 %Determinante
 \node (DET) [defi,rectangle split parts=1,text width=\probW, anchor=south west] 
-at (CNFCFGWORD.north west) 
+at (acyclicCSP.north west) 
 { 
 	\textbf{\textsc{Determinante}} \hfill in $\mathbf{NC^2}$
 };
 \draw (NC2) [line width=1mm] edge [] (DET.east);
 
+% P-Vollständige  Probleme
+\node (HORNSAT) [defi2,text width=\probW,anchor=south west]
+at (DET.north west) 
+{
+	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
+	\textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
+	\textbf{Frage:} Ist $K$ erfüllbar?
+};
+\draw (P) [line width=1mm] edge [] (HORNSAT.east);
+
+
 
 % Satz von Rice
-\node (RICE) [defi,text width=\probW, anchor=north west] 
-at  ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
-{
-	\textbf{Satz von Rice} \src{(GTI  18/10)}
-	\nodepart{second} 
-	Für jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
-	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
-	\nodepart{third} 
-	\textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
-};
+%\node (RICE) [defi,text width=\probW, anchor=north west] 
+%at  ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
+%{
+%	\textbf{Satz von Rice} \src{(GTI  18/10)}
+%	\nodepart{second} 
+%	Für jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
+%	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
+%	\nodepart{third} 
+%	\textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
+%};
 %\draw (RE) [line width=1mm] edge [] (RICE.west);
 
+\node (TMHALT) [defi,rectangle split parts=1,text width=\probW, anchor=north west] 
+at ([xshift=1.5cm,yshift=-3.5cm] current page.north west) 
+{ 
+	\textbf{\textsc{TM-Halt}} \hfill in $\mathbf{RE}$
+};
+\draw (RE) [line width=1mm] edge [] (TMHALT.east);
 
 % 2-PlayerCorridorTiling
 \node (2PTiling) [defi2,text width=\probW, anchor=north west] 
-at  (RICE.south west) 
+at  (TMHALT.south west) 
 {
 	\textbf{\textsc{2-PlayerCorridorTiling}}  \hfill $\mathbf{EXP}$-C 
 	\nodepart{second} 
 	\textbf{Gegeben:} Kachelmenge $T$ und Zahl $k$ (unär kodiert!) \newline
 	\textbf{Frage:} Hat Spieler 1 eine Gewinnstrategie im Tiling-Spiel?
 };
-\draw ([yshift=-2cm] 2PTiling.east) [line width=1mm] edge [] (EXPTIME);
+\draw ([yshift=-4cm] 2PTiling.east) [line width=1mm] edge [bend right=25] (EXPTIME.west);
 
 %QBF
 \node (QBF) [defi,text width=\probW, anchor=north west] 
@@ -294,12 +314,12 @@ at  (2PTiling.south west)
 {
 	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
-	\textbf{Gegeben:} Quantifizierte $AL$-Formel $\varphi$ (in Pränex-Normalform und KNF).\newline
+	\textbf{Gegeben:} Quantifizierte aussagenlogische Formel $\varphi$ (in Pränex-Normalform und KNF).\newline
 	\textbf{Frage:} Ist $K$ erfüllbar?
 	\nodepart{third}
 	\textbf{Komplexität:} PSPACE-Vollständig
 };
-\draw (QBF) [line width=1mm] edge [] (PSPACE);
+\draw (QBF.east) [line width=1mm] edge [] (PSPACE);
 
 %2Tiling
 \node (2Tiling) [defi2,text width=\probW, anchor=north west] 
@@ -342,15 +362,6 @@ at (NPtiling.south west)
 };
 \draw (TSP.east) [line width=1mm] edge [] (NP);
 
-% P-Vollständige  Probleme
-\node (HORNSAT) [defi2,text width=\probW,anchor=north west]
-at (TSP.south west) 
-{
-	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
-	\textbf{Gegeben:} Eine Menge von Horn-Klauseln $K$ \newline
-	\textbf{Frage:} Ist $K$ erfüllbar?
-};
-\draw (P) [line width=1mm] edge [] (HORNSAT);
 
 % \node [defi] at (\leftPr+10,45) 
 % {
@@ -369,8 +380,8 @@ at (TSP.south west)
 % Sätze
 %%%%%%%%%%%%%%%%
 
-\fill [fill=blue!30] (HORNSAT.south west) -- (HORNSAT.south east) -- (DET.north east) -- (DET.north west) -- cycle ;
-\node (time) [anchor=south] at ( DET.north) {$\mathbf{TIME(f)}$};
+\filldraw [fill=blue!30] (TSP.south west) -- (TSP.south east) -- (HORNSAT.north east) -- (HORNSAT.north west) -- cycle ;
+\node (time) [anchor=south] at (HORNSAT.north) {$\mathbf{TIME(f)}$};
 \node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
 \node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
 \node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
@@ -392,8 +403,8 @@ at ([xshift=-1.5cm,yshift=1.5cm] current page.south east)
 {
 	\textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
 	Seien $f,g$ zeitkonstruierbar mit 
-	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ .\newline
-	So gilt: $\mathbf{TIME(f)\subsetneq TIME(g)}$
+	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ . 
+	So gilt: \[\mathbf{TIME(f)\subsetneq TIME(g)}\]
 };
 
 \node (SpaceHierarchie) [satz2,text width=\satzW, anchor=south east] 
@@ -402,10 +413,8 @@ at (TimeHierarchie.north east)
 	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
 	Seien $f,g$ zeitkonstruierbar mit \newline
 	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
-	\begin{itemize}
-	\item $\mathbf{SPACE(f)\subsetneq SPACE(g)}$
-	\item $\mathbf{NSPACE(f)\subsetneq NSPACE(g)}$
-	\end{itemize}
+	\[\mathbf{SPACE(f)\subsetneq SPACE(g)}\]
+	\[\mathbf{NSPACE(f)\subsetneq NSPACE(g)}\]
 };
 
 \node (SatzSavitch) [satz,text width=\satzW, anchor=south east] 
@@ -434,7 +443,7 @@ at (SatzImmerman.north east)
 	\end{enumerate}
 };
 
-
+\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 
 %%%%%%%%%%%%%%%%
 % NP-Charakterisierung
@@ -443,7 +452,7 @@ at (SatzImmerman.north east)
 
 \fontsize{35}{25}\selectfont
 
-\filldraw [fill=blue!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 
 \node [rotate=90, anchor=north west] at (SatzAlternation.north west) {
 	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
@@ -489,7 +498,7 @@ at ([yshift=3cm]SatzAlternation.north east)
 %%%%%%%%%%%%%%%%
 \fontsize{45}{33}\selectfont
 
-\node (fPvsNP) [rotate=90, anchor=north west] at ([yshift=17cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
+\node (optimierung) [rotate=90, anchor=north west] at ([yshift=17cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
 
 \node (fPvsNP) [rotate=90, anchor=north west] at ([xshift=2cm,yshift=17cm] SatzAlternation.north west) {Falls $\mathbf{P\neq NP}$ gilt:};
 \node (PO) [anchor=south east] at ([xshift=-15cm] PCP.north east) {$\mathbf{PO}$} ;
@@ -513,7 +522,11 @@ at ([yshift=3cm]SatzAlternation.north east)
 % W-Hierarchie
 %%%%%%%%%%%%%%
 
-\node (fpt) at ([xshift=-30cm,yshift=20cm]current page.east) {$\mathbf{FPT}$};
+\fontsize{35}{25}\selectfont
+
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=20cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskomplexität} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
+
+\node (fpt) at ([xshift=5cm,yshift=0cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
 \node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
 \node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
@@ -537,6 +550,14 @@ at ([yshift=3cm]SatzAlternation.north east)
 
 \draw (wSAT) edge [kEdge,->] (aStar);
 \draw (wP) edge [kEdge,->] (XP);
+
+% Das PCP Theorem
+\node (paramProbl) [satz, fill=yellow!40,text width=30cm, anchor=north east]
+at ([yshift=62cm] SatzAlternation.north east) 
+{
+	\textbf{Parametrisiertes Problem} \nodepart{second} 
+	Ein Tupel $(Q,\kappa)$ heißt parametrisiertes Problem falls $Q\subseteq\Sigma^\ast$ und $\kappa:\Sigma^\ast\to\mathbb{N}$ poly. berechenbar ist.
+};
 
 \end{tikzpicture}
 	
