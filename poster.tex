@@ -301,7 +301,7 @@ at ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
 \node (FOString) [defi2,text width=\probW, anchor=north west] 
 at  (TMHALT.south west) 
 {
-	\textbf{\textsc{SAT-FO-String}}  \hfill $\mathbf{EXP}$-C 
+	\textbf{\textsc{SAT-FO-String}}  \hfill in $\mathbf{R}$
 	\nodepart{second} 
 	\textbf{Gegeben:} Eine PL Formel $\varphi$ über Strings \newline
 	\textbf{Frage:} Ist $\varphi$ erfüllbar?
@@ -384,7 +384,6 @@ at (NPtiling.south west)
 %   \textbf{Komplexität:} NP-Vollständig
 % };
 
-
 \def\satzW{32cm}
 
 %%%%%%%%%%%%%%%%
@@ -437,8 +436,7 @@ at (SatzImmerman.north east)
 	\end{enumerate}
 };
 
-\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
-
+\fill [fill=red!30] (SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 %%%%%%%%%%%%%%%%
 % NP-Charakterisierung
 %%%%%%%%%%%%%%%%
@@ -446,7 +444,7 @@ at (SatzImmerman.north east)
 
 \fontsize{35}{25}\selectfont
 
-\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+%\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 
 \node [rotate=90, anchor=north west] at (SatzAlternation.north west) {
 	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
@@ -474,10 +472,10 @@ at (SatzImmerman.north east)
 
 
 % Das PCP Theorem
-\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=south east]
-at ([yshift=3cm]SatzAlternation.north east) 
+\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=north east]
+at ([yshift=16cm]SatzAlternation.north east) 
 {
-	\textbf{PCP} \textit{probabilistically checkable proof} \nodepart{second} 
+	\textbf{PCP} \textit{(probabilistically checkable proof)} \nodepart{second} 
 	Die Klasse $PCP(\mathcal{F},\mathcal{G})$ der Sprachen $L$ für die es einen Verifizierer $V$ gibt der
 	\begin{itemize}
 	\item $\leq r(n)$ Zufallsbits verwendet \hfill($r\in\mathcal{F}$)
@@ -486,6 +484,8 @@ at ([yshift=3cm]SatzAlternation.north east)
 	\item und für jeden Beweis kein $x\notin L$ mit W'keit $>\frac{1}{2}$ akzeptiert.
 	\end{itemize}
 };
+
+\draw [line width=1mm] (PCP.north west)  -- ([yshift=16cm]SatzAlternation.north west);
 
 %%%%%%%%%%%%%%%%
 % NPO Hierarchie
@@ -518,9 +518,9 @@ at ([yshift=3cm]SatzAlternation.north east)
 
 \fontsize{35}{25}\selectfont
 
-\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=20cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskomplexität} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=20cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
 
-\node (fpt) [anchor=south west] at ([xshift=2cm,yshift=0cm]Parametrisierung.south west) {$\mathbf{FPT}$};
+\node (fpt) [anchor=south west] at ([xshift=1.5cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
 \node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
 \node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
@@ -546,7 +546,7 @@ at ([yshift=3cm]SatzAlternation.north east)
 \draw (wP) edge [kEdge] (XP);
 
 % Das Parametrisierte Probleme
-\node (paramProbl) [satz, fill=yellow!40,text width=30cm, anchor=north east]
+\node (paramProbl) [satz, fill=yellow!40,text width=\satzW, anchor=north east]
 at ([yshift=62cm] SatzAlternation.north east) 
 {
 	\textbf{Parametrisiertes Problem} \nodepart{second} 
@@ -565,7 +565,7 @@ at ([yshift=62cm] SatzAlternation.north east)
 \node (lPSPACED) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNPD.north east) {$\mathbf{PFP}$};
 
 \node (lAC0) [anchor=center] at ([xshift=-12cm]lAC0D.east) {$\mathbf{AC^0}$};
-\node (lREG) [anchor=center] at ([xshift=-14.5cm]lREGD.east) {$\mathbf{REG}$};
+\node (lREG) [anchor=center] at ([xshift=-15cm]lREGD.east) {$\mathbf{REG}$};
 \node (lTC0) [anchor=center] at ([xshift=-12cm]lTC0D.east) {$\mathbf{TC^0}$};
 \node (lL) [anchor=center] at ([xshift=-12cm]lLD.east) {$\mathbf{L}$};
 \node (lNL) [anchor=center] at ([xshift=-12cm]lNLD.east) {$\mathbf{NL}$};
@@ -574,7 +574,7 @@ at ([yshift=62cm] SatzAlternation.north east)
 \node (lPSPACE) [anchor=center] at ([xshift=-12cm]lPSPACED.east) {$\mathbf{PSPACE}$};
 
 
-\node (ltitel) [anchor=north east] at ([xshift=-.0cm, yshift=-0cm]paramProbl.south east) {\fontsize{55}{33}\selectfont \textbf{Komplexität \& Logik}};
+\node (ltitel) [anchor=north east] at ([xshift=-.0cm, yshift=-0cm]paramProbl.south east) {\fontsize{50}{33}\selectfont \textbf{Komplexität \& Logik}};
 
 \draw (lAC0) edge [kEdge] (lTC0);
 \draw (lTC0) edge [kEdge] (lL);
@@ -593,14 +593,28 @@ at ([yshift=62cm] SatzAlternation.north east)
 \draw (lNP) edge [kEdge,loosely dotted] (lNPD);
 \draw (lPSPACE) edge [kEdge,loosely dotted] (lPSPACED);
 
-% Das Parametrisierte Probleme
-\node (logikACompl) [satz, fill=yellow!40,text width=32cm, anchor=north east]
+% Logiken und Komplexitätsklassen
+\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, anchor=north east]
 at ([yshift=0cm] lAC0D.south east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
-	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A}|\mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
+	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
 	
 };
+
+% Logiken und Komplexitätsklassen
+\node (logikACompl2) [satz,text width=\satzW,minimum width=\satzW, anchor=south east] 
+at (SatzAlternation.north east) 
+{
+	\textbf{Komplexität einer Logik} \nodepart{second} 
+	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
+	
+};
+
+\draw [thick,red]([xshift=-1.5cm]current page.east) -- ([xshift=-(1.5cm+33cm)] current page.east);
+\fontsize{45}{33}\selectfont
+\draw [thick,red] ([xshift=-1.5cm,yshift=-2cm]current page.east) -- ([xshift=-\satzW,yshift=-2cm] current page.east);
+
 
 
 
@@ -609,7 +623,7 @@ at ([yshift=0cm] lAC0D.south east)
 %%%%%%%%%%%%%%%%%%%%%%%
 \fontsize{30}{25}\selectfont
 
-\filldraw [fill=blue!50] (TSP.south west) -- (TSP.south east) -- (HORNSAT.north east) -- (HORNSAT.north west) -- cycle ;
+\fill [fill=blue!50] (TSP.south west) -- (TSP.south east) -- (HORNSAT.north east) -- (HORNSAT.north west) -- cycle ;
 \node (time) [anchor=south] at (HORNSAT.north) {$\mathbf{TIME(f)}$};
 \node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
 \node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
