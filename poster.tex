@@ -24,7 +24,7 @@
 
 \usetikzlibrary{decorations.markings,decorations.pathreplacing}
 \usetikzlibrary{shapes.geometric,shapes,automata,positioning}
-\usetikzlibrary{shadows}
+\usetikzlibrary{shadows,calc}
 
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
@@ -114,7 +114,6 @@
 % \node (POLYLOGSPACE) [sideklass,left of= coRP] {$\mathbf{POLYLOGSPACE}$};
 %\node (Ppp) [left =of PSPACE] {$\mathbf{P^{PP}=P^{\#P}}$};
 %\node (PP) [sideklass,below of= Ppp] {$\mathbf{PP}$};
-\node (PP) at ([xshift=2cm,yshift=-3cm]PSPACE.south east) {$\mathbf{PP}$};
 
 % \draw (AC0) [kEdge,-|] edge   (ACC0);
 % \draw (ACC0)[kEdge] edge  (TC0);
@@ -130,10 +129,10 @@
 %\draw (REG)[kEdge] edge  (CFL);
 \draw (AC1) [kEdge]edge  (TC1);
 \draw (TC1) [kEdge]edge  (NC2);
-\draw (NC2)[kEdge,dashed] edge  (ACi);
+\draw (NC2)[kEdge,loosely dashed] edge  (ACi);
 \draw (ACi)[kEdge] edge  (TCi);
 \draw (TCi) [kEdge]edge  (NCi);
-\draw (NCi) [kEdge,dashed]edge  (NC);
+\draw (NCi) [kEdge,loosely dashed]edge  (NC);
 \draw (NC) [kEdge]edge  (P);
 \draw (P) [kEdge]edge  (ZPP);
 \draw (ZPP) [kEdge]edge  (coRP);
@@ -144,9 +143,6 @@
 \draw (RP) [kEdge]edge  (NP);
 \draw (coNP) [kEdge]edge  (DP);
 \draw (NP) [kEdge]edge  (DP);
-%\draw (coNP)[kEdge] edge  (PP);
-\draw (BPP) [color=black!20,bend right=20,kEdge]edge  (PP);
-%\draw (NP) [kEdge]edge  (PP);
 \draw (DP) [kEdge]edge  (TP2);
 \draw (TP2)[kEdge] edge  (DP2);
 \draw (DP2) [kEdge]edge  (SP2);
@@ -154,7 +150,7 @@
 \draw (DP2)[kEdge] edge  (PP2);
 \draw (PP2)[kEdge] edge  (TP3);
 \draw (TP3) [kEdge]edge  (DP3);
-\draw (DP3) [kEdge,dashed]edge  (PH);
+\draw (DP3) [kEdge,loosely dashed]edge  (PH);
 \draw (PH) [kEdge]edge  (PSPACE);
 
 
@@ -170,7 +166,11 @@
 
 %\draw (PH) [kEdge]edge  (Ppp);
 %\draw (PP) [kEdge]edge  (Ppp);
-\draw (PP) [kEdge]edge  (PSPACE);
+\node (PP) [color=black!40] at ([xshift=3cm,yshift=2cm]PP2) {$\mathbf{PP}$};
+\draw (PP) [kEdge, bend right=10,color=black!20]edge ([xshift=2cm]PSPACE.south);
+\draw (NP) [color=black!20,bend right=30,kEdge]edge  (PP);
+\draw (BPP) [color=black!20,bend right=25,kEdge]edge  (PP);
+\draw (coNP) [color=black!20,bend right=20,kEdge]edge  (PP);
 
 %\node (time) at (72,17) {$\mathbf{TIME(f)}$};
 %\node (coNTime) [hier,above left =of time] {$\mathbf{co-NTIME(f)}$};
@@ -326,7 +326,7 @@ at  (2PTiling.south west)
 	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
 	\textbf{Gegeben:} Quantifizierte AL Formel $\varphi$ (in Pränex-Normalform und KNF).\newline
-	\textbf{Frage:} Ist $K$ erfüllbar?
+	\textbf{Frage:} Ist $\varphi$ erfüllbar?
 	\nodepart{third}
 	\textbf{Komplexität:} PSPACE-Vollständig
 };
@@ -338,7 +338,7 @@ at  (QBF.south west)
 {
 	\textbf{\textsc{CorridorTiling}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
-	\textbf{Gegeben:} Kachelmenge $T$ und Zahl $k$ (unär kodiert!) \newline
+	\textbf{Gegeben:} Kachelmenge $T$ und Zahl $k$ (unär) \newline
 	\textbf{Frage:} Gibt es eine $k\times l$ Kachelung?
 };
 \draw ([yshift=1cm]2Tiling.east) [line width=1mm] edge [] (PSPACE);
@@ -358,7 +358,7 @@ at (2Tiling.south west)
 at (SAT.south west) 
 {
 	\textbf{\textsc{Tiling}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
-	\textbf{Gegeben:} Kachelmenge $T$ und Zahlen $c,r$ (unär kodiert!) \newline
+	\textbf{Gegeben:} Kachelmenge $T$ und Zahlen $c,r$ (unär) \newline
 	\textbf{Frage:} Gibt es eine $c\times r$-Lösung für $T$?
 };
 \draw (NPtiling.east) [line width=1mm] edge [] (NP);
@@ -438,8 +438,10 @@ at (SatzImmerman.north east)
 };
 
 \filldraw [fill=red!30,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=-0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north east) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]SatzAlternation.north east) -- cycle ;
+
+
 %%%%%%%%%%%%%%%%
-% NP-Charakterisierung
+% Beweissysteme
 %%%%%%%%%%%%%%%%
 
 
@@ -464,12 +466,12 @@ at (SatzImmerman.north east)
 
 \node (IP) at ([xshift=-2cm,yshift=2.5cm] Spi2.north) {$\mathbf{PSPACE}=\mathbf{IP}$};
 
-\draw (mBPP) edge (MA);
-\draw ([xshift=-8cm]npchar.north) edge (MA);
+\draw (mBPP) edge [kEdge] (MA);
+\draw ([xshift=-8cm]npchar.north) edge [kEdge] (MA);
 
-\draw (MA) edge (AM);
-\draw (AM) edge (Spi2);
-\draw (Spi2) edge (IP);
+\draw (MA) edge [kEdge] (AM);
+\draw (AM) edge [kEdge] (Spi2);
+\draw (Spi2) edge [kEdge] (IP);
 
 
 % Das PCP Theorem
@@ -493,25 +495,61 @@ at ([yshift=16cm]SatzAlternation.north east)
 %%%%%%%%%%%%%%%%
 \fontsize{45}{33}\selectfont
 
-\node (optimierung) [rotate=90, anchor=north west] at ([yshift=17cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
+\node (optimierung) [rotate=90, anchor=north west] at ([yshift=16cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
 
-\node (fPvsNP) [rotate=90, anchor=north west] at ([xshift=2cm,yshift=17cm] SatzAlternation.north west) {Falls $\mathbf{P\neq NP}$ gilt:};
-\node (PO) [anchor=south east] at ([xshift=-15cm] PCP.north east) {$\mathbf{PO}$} ;
-\node (FPTAS) [hier,above =of PO] {$\mathbf{FPTAS}$} ;
-\node (PTAS) [hier,above =of FPTAS] {$\mathbf{PTAS}$} ;
-\node (APX) [hier,above =of PTAS] {$\mathbf{APX}$} ;
-\node (NPO) [hier,above =of APX] {$\mathbf{NPO}$} ;
+\fontsize{35}{25}\selectfont
+
+\node (PO) [anchor=south east] at ([xshift=4cm] optimierung.south west) {$\mathbf{PO}$} ;
+\node (FPTAS) [hier,node distance=1.5cm,above =of PO] {$\mathbf{FPTAS}$} ;
+\node (PTAS) [hier,node distance=1.5cm,above =of FPTAS] {$\mathbf{PTAS}$} ;
+\node (APX) [hier,node distance=1.5cm,above =of PTAS] {$\mathbf{APX}$} ;
+\node (NPO) [hier,node distance=1.5cm,above =of APX] {$\mathbf{NPO}$} ;
 
 \draw (PO) edge [kEdge,-|] (FPTAS);
 \draw (FPTAS) edge [kEdge,-|] (PTAS);
 \draw (PTAS) edge [kEdge,-|] (APX);
 \draw (APX) edge [kEdge,-|] (NPO);
 
-\node (minTSP) at ([xshift=7cm] NPO.east) {$\mathbf{min}\text{-}\mathbf{TSP}$};
-\draw (NPO.east) edge [kEdge,loosely dotted] (minTSP.west);
 
-\node (max3SAT) at ([xshift=7cm] APX.east) {$\mathbf{max}\text{-}\mathbf{3}\text{-}\mathbf{SAT}$};
-\draw (APX.east) edge [kEdge,loosely dotted] (max3SAT.west);
+\coordinate (APX2NPO) at ($ (NPO) !.5! (APX) $);
+\coordinate (PTAS2APX) at ($ (APX) !.5! (PTAS) $);
+\coordinate (FPTAS2PTAS) at ($ (PTAS) !.5! (FPTAS) $);
+\coordinate (PO2FPTAS) at ($ (FPTAS) !.5! (PO) $);
+\node (optTSP)        [anchor=east] at ([xshift=12cm] APX2NPO) {\textbf{\textsc{TSP}}};
+\node (optMaxSAT)     [anchor=east] at ([xshift=12cm] PTAS2APX) {\textbf{\textsc{MAX-SAT}}};
+\node (optScheduling) [anchor=east] at ([xshift=12cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
+\node (optRucksack)   [anchor=east] at ([xshift=12cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
+ 
+\draw (APX2NPO) edge [kEdge,loosely dotted] (optTSP.west);
+\draw (PTAS2APX) edge [kEdge,loosely dotted] (optMaxSAT.west);
+\draw (FPTAS2PTAS) edge [kEdge,loosely dotted] (optScheduling.west);
+\draw (PO2FPTAS) edge [kEdge,loosely dotted] (optRucksack.west);
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Satz von TODA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fontsize{33}{33}\selectfont
+
+\node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
+at (PCP.north east) 
+{
+	\textbf{Satz: Klassenoperatoren} \nodepart{second} 
+	Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
+	{\boldmath\begin{align*}
+		\mathbf{BP}\cdot\mathbf{BP}\cdot\mathcal{C} & \subseteq\mathbf{BP}\cdot\mathcal{C}\\
+		\oplus\cdot\oplus\cdot\mathcal{C}           & \subseteq\oplus\mathcal{C}\\
+		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+		\exists\cdot\mathcal{C}                     & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+		\exists\cdot\mathbf{BP}\cdot\mathcal{C}     & \subseteq\mathbf{BP}\cdot\exists\cdot\mathcal{C}\\
+		\exists\cdot\mathbf{BP}\cdot\mathbf{P}      & =\mathbf{MA}\\
+		\mathbf{BP}\cdot\exists\cdot\mathbf{P}      & =\mathbf{AM}
+		\end{align*}}
+};
+
+\node (fPvsNP) [anchor=north west] at (ClassOP.north west -| optimierung.north east) {\textbf{Falls\boldmath\ $\mathbf{P}\neq \mathbf{NP}$}};
+
+\node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Trennende\\ Beispiele};
 
 %%%%%%%%%%%%%%
 % W-Hierarchie
@@ -519,7 +557,7 @@ at ([yshift=16cm]SatzAlternation.north east)
 
 \fontsize{35}{25}\selectfont
 
-\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=20cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
 
 \node (fpt) [anchor=south west] at ([xshift=1.5cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
@@ -535,12 +573,12 @@ at ([yshift=16cm]SatzAlternation.north east)
 \draw (fpt) edge [kEdge] (w1);
 \draw (w1) edge [kEdge] (w2);
 \draw (w2) edge [kEdge] (a2);
-\draw (w2) edge [kEdge,dashed] (wSAT);
+\draw (w2) edge [kEdge,loosely dashed] (wSAT);
 \draw (wSAT) edge [kEdge] (wP);
 \draw (wP) edge [kEdge] (paraNP);
 
 \draw (w1) edge [kEdge] (a2);
-\draw (a2) edge [kEdge,dashed] (aStar);
+\draw (a2) edge [kEdge,loosely dashed] (aStar);
 \draw (aStar) edge [kEdge] (XP);
 
 \draw (wSAT) edge [kEdge] (aStar);
@@ -561,7 +599,7 @@ at ([yshift=62cm] SatzAlternation.north east)
 \node (lTC0D) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lAC0D.north east) {$\mathbf{FO(+,\times)+C}$};
 \node (lLD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lTC0D.north east) {$\mathbf{DTC}$};
 \node (lNLD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lLD.north east) {$\mathbf{TC}$};
-\node (lPD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNLD.north east) {$\mathbf{ESO\text{-}Horn, LFP}$};
+\node (lPD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNLD.north east) {$\mathbf{HornESO, LFP}$};
 \node (lNPD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lPD.north east) {$\mathbf{ESO}$};
 \node (lPSPACED) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNPD.north east) {$\mathbf{PFP}$};
 
@@ -585,18 +623,18 @@ at ([yshift=62cm] SatzAlternation.north east)
 \draw (lP) edge [kEdge] (lNP);
 \draw (lNP) edge [kEdge] (lPSPACE);
 
-\draw (lAC0) edge [kEdge,loosely dotted] (lAC0D);
-\draw (lTC0) edge [kEdge,loosely dotted] (lTC0D);
-\draw (lREG) edge [kEdge,loosely dotted] (lREGD);
-\draw (lL) edge [kEdge,loosely dotted] (lLD);
-\draw (lNL) edge [kEdge,loosely dotted] (lNLD);
-\draw (lP) edge [kEdge,loosely dotted] (lPD);
-\draw (lNP) edge [kEdge,loosely dotted] (lNPD);
-\draw (lPSPACE) edge [kEdge,loosely dotted] (lPSPACED);
+\draw (lAC0) edge [kEdge,loosely dashed] (lAC0D);
+\draw (lTC0) edge [kEdge,loosely dashed] (lTC0D);
+\draw (lREG) edge [kEdge,loosely dashed] (lREGD);
+\draw (lL) edge [kEdge,loosely dashed] (lLD);
+\draw (lNL) edge [kEdge,loosely dashed] (lNLD);
+\draw (lP) edge [kEdge,loosely dashed] (lPD);
+\draw (lNP) edge [kEdge,loosely dashed] (lNPD);
+\draw (lPSPACE) edge [kEdge,loosely dashed] (lPSPACED);
 
 % Logiken und Komplexitätsklassen
-\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=north east]
-at ([yshift=0cm] lAC0D.south east) 
+\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=south east]
+at ([yshift=0cm] ClassOP.north east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
 	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
