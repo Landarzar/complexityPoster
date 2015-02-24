@@ -437,7 +437,7 @@ at (SatzImmerman.north east)
 	\end{enumerate}
 };
 
-\fill [fill=red!30] (SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north west) -- ([yshift=62cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+\filldraw [fill=red!30,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=-0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north east) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]SatzAlternation.north east) -- cycle ;
 %%%%%%%%%%%%%%%%
 % NP-Charakterisierung
 %%%%%%%%%%%%%%%%
@@ -486,7 +486,7 @@ at ([yshift=16cm]SatzAlternation.north east)
 	\end{itemize}
 };
 
-\draw [line width=1mm] (PCP.north west)  -- ([yshift=16cm]SatzAlternation.north west);
+\draw [line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] PCP.north west)  -- ([yshift=16cm-0.5\pgflinewidth]SatzAlternation.north west);
 
 %%%%%%%%%%%%%%%%
 % NPO Hierarchie
@@ -603,16 +603,12 @@ at ([yshift=0cm] lAC0D.south east)
 	
 };
 
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%
 % Kleine Hierarchie
 %%%%%%%%%%%%%%%%%%%%%%%
 \fontsize{30}{25}\selectfont
 
-\fill [fill=blue!50] (TSP.south west) -- (TSP.south east) -- (HORNSAT.north east) -- (HORNSAT.north west) -- cycle ;
+\filldraw [fill=blue!50,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth]TSP.south west) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]TSP.south east) -- ([xshift=-0.5\pgflinewidth,yshift=0.5\pgflinewidth]HORNSAT.north east) -- ([xshift=0.5\pgflinewidth,yshift=0.5\pgflinewidth]HORNSAT.north west) -- cycle ;
 \node (time) [anchor=south] at (HORNSAT.north) {$\mathbf{TIME(f)}$};
 \node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
 \node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
