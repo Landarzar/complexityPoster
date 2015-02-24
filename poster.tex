@@ -250,7 +250,7 @@ at (UREACH.north west)
 at (REACH.north west) 
 { 
 	\textbf{\textsc{AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
-	\textbf{Gegeben:} Variablenmenge $V$, Domäne $U$, Menge von Constaints $\mathcal{C}$ \newline
+	\textbf{Gegeben:} Variablenmenge $V$, Domäne $U$, Menge von Constraints $\mathcal{C}$ \newline
 	\textbf{Frage:} Gibt es eine Lösung $\sigma\subseteq V\times U$, so dass $\sigma(\mathcal{C})$ wahr wird?
 };
 \draw ([xshift=-2cm] LOGCFL.north) [line width=1mm] edge (acyclicCSP.east);
@@ -325,7 +325,7 @@ at  (2PTiling.south west)
 {
 	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
-	\textbf{Gegeben:} Quantifizierte AL Formel $\varphi$ (in Pränex-Normalform und KNF).\newline
+	\textbf{Gegeben:} Quantifizierte AL Formel $\varphi$ (in Pränex-Normalform und KNF)\newline
 	\textbf{Frage:} Ist $\varphi$ erfüllbar?
 	\nodepart{third}
 	\textbf{Komplexität:} PSPACE-Vollständig
@@ -405,7 +405,7 @@ at ([xshift=-1.5cm,yshift=1.5cm] current page.south east)
 at (TimeHierarchie.north east) 
 {
 	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
-	Seien $f,g$ zeitkonstruierbar mit \newline
+	Seien $f,g$ zeitkonstruierbar mit 
 	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
 	\[\mathbf{SPACE(f)\subsetneq SPACE(g)}\]
 	\[\mathbf{NSPACE(f)\subsetneq NSPACE(g)}\]
@@ -559,15 +559,15 @@ at (PCP.north east)
 
 \node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
 
-\node (fpt) [anchor=south west] at ([xshift=1.5cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
+\node (fpt) [anchor=south west] at ([xshift=1.3cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
 \node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
 \node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
 \node (wP) [hier,above =of wSAT] {$\mathbf{W[P]}$};
 \node (paraNP) [hier,above =of wP] {$\mathbf{paraNP}$};
 
-\node (aStar) [node distance=2cm,right  =of wP] {$\mathbf{AW[*]}$};
-\node (a2) [node distance=2cm,below =of aStar] {$\mathbf{A[2]}$};
+\node (aStar) [node distance=1.5cm,right  =of wP] {$\mathbf{AW[*]}$};
+\node (a2) [node distance=1.7cm,below =of aStar] {$\mathbf{A[2]}$};
 \node (XP) [hier,above =of aStar] {$\mathbf{XP}$};
 
 \draw (fpt) edge [kEdge] (w1);
@@ -589,8 +589,13 @@ at (PCP.north east)
 at ([yshift=62cm] SatzAlternation.north east) 
 {
 	\textbf{Parametrisiertes Problem} \nodepart{second} 
-	Ein Tupel $(Q,\kappa)$ heißt parametrisiertes Problem falls $Q\subseteq\Sigma^\ast$ und $\kappa:\Sigma^\ast\to\mathbb{N}$ poly. berechenbar ist.
+	Ein Tupel $(Q,\kappa)$ heißt parametrisiertes Problem falls $Q\subseteq\Sigma^\ast$ und $\kappa:\Sigma^\ast\to\mathbb{N}$ in polynomieller Zeit berechenbar ist.
 };
+
+%%%%%%%%%%%%%%
+% Logik & Komplexität
+%%%%%%%%%%%%%%
+
 
 \def\mydist{0.8cm}
 
@@ -637,9 +642,13 @@ at ([yshift=62cm] SatzAlternation.north east)
 at ([yshift=0cm] ClassOP.north east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
-	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
+	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ .
 	
 };
+
+\coordinate (temp) at (logikACompl.north west -| ltitel.north west);
+
+\draw [line width=1mm] ([xshift=.3cm]ltitel.north west) -- ([xshift=.3cm]temp);
 
 %%%%%%%%%%%%%%%%%%%%%%%
 % Kleine Hierarchie
@@ -662,6 +671,13 @@ at ([yshift=0cm] ClassOP.north east)
 \draw (space) [kEdge] edge (nspace) ;
 \draw (nspace) [kEdge] edge (time2e) ;
 \draw (nspace) [kEdge] edge (space2) ;
+
+
+\fontsize{35}{25}\selectfont
+
+\node (sn) [anchor=north west] at (TSP.south west) {\textbf{Falls\boldmath\ $f(n)\geq\log(n)$}};
+
+\node (littleOverview) [rotate=90, anchor=south west,align=left] at (HORNSAT.north east) {\fontsize{55}{33}\selectfont \textbf{Kleine}\\\fontsize{55}{33}\selectfont\textbf{Hierarchie}};
 
 \end{tikzpicture}
 	
