@@ -515,10 +515,10 @@ at ([yshift=-1mm]SatzAlternation.north east)
 
 %\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 
-\node (proofsystem) [rotate=90, anchor=north west] at ([yshift=16cm] SatzAlternation.north west) {
+\node (proofsystem) [rotate=90, anchor=north west] at (ClassOP.north west-| SatzAlternation.north west) {
 	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
 
-\node (npchar) [anchor=south west] at ([xshift=2.5cm,yshift=-1cm]proofsystem.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
+\node (npchar) [anchor=south west] at ([xshift=2.5cm,yshift=0cm]proofsystem.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
 \node (mBPP) at ([xshift=1cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
 \node (MA) at ([xshift=4cm,yshift=3cm] npchar.north west) {$\mathbf{MA}$};
 \node (AM) at ([yshift=2.5cm] MA.north) {$\mathbf{AM}$};
