@@ -156,7 +156,7 @@
 
 \draw (PSPACE) [kEdge]edge  (EXPTIME);
 \draw (EXPTIME) [kEdge]edge  (ELEMENTARY);
-\draw (ELEMENTARY) [kEdge,-|]edge  (PR);
+\draw (ELEMENTARY) [kEdge]edge  (PR);
 \draw (PR) [kEdge,-|] edge  (R);
 \draw (R) [kEdge,-|] edge  (coRE);
 \draw (R) [kEdge,-|] edge  (RE);
@@ -218,7 +218,7 @@ at (ADD.north west)
 at (MULT.north west) 
 { 
 	\textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
-	\textbf{Gegeben:} Var. freie boolesche Formel $B$ \newline
+	\textbf{Gegeben:} Variablenfreie boolesche Formel $B$ \newline
 	\textbf{Frage:} Ist $B$ wahr? 
 };
 \draw (NC1) [line width=1mm] edge (FVP.east);
@@ -302,7 +302,11 @@ at ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
 at  (TMHALT.south west) 
 {
 	\textbf{\textsc{SAT-FO-String}}  \hfill in $\mathbf{R}$
-	\nodepart{second} 
+	\nodepart{second} 	
+%	\begin{description}
+%	\item[Gegeben: ] Eine PL Formel $\varphi$ über Strings
+%	\item[Frage: ] Ist $\varphi$ erfüllbar?
+%	\end{description}
 	\textbf{Gegeben:} Eine PL Formel $\varphi$ über Strings \newline
 	\textbf{Frage:} Ist $\varphi$ erfüllbar?
 };
@@ -406,7 +410,7 @@ at (TimeHierarchie.north east)
 {
 	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
 	Seien $f,g$ zeitkonstruierbar mit 
-	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$. So gilt
+	$f(n)\in\Omega(\log n)$ und $g(n)\in\omega(f(n))$, so gilt:
 	\[\mathbf{SPACE(f)\subsetneq SPACE(g)}\]
 	\[\mathbf{NSPACE(f)\subsetneq NSPACE(g)}\]
 };
@@ -415,7 +419,7 @@ at (TimeHierarchie.north east)
 at (SpaceHierarchie.north east) 
 {
 	\textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
-	Sei $S$ platzkonstruierbar und $S(n)\geq \log n$, so gilt
+	Sei $S$ platzkonstruierbar und $S(n)\geq \log n$, so gilt:
 	$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
 };
 
@@ -520,10 +524,10 @@ at ([yshift=16cm]SatzAlternation.north east)
 \node (optScheduling) [anchor=east] at ([xshift=12cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
 \node (optRucksack)   [anchor=east] at ([xshift=12cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
  
-\draw (APX2NPO) edge [kEdge,loosely dotted] (optTSP.west);
-\draw (PTAS2APX) edge [kEdge,loosely dotted] (optMaxSAT.west);
-\draw (FPTAS2PTAS) edge [kEdge,loosely dotted] (optScheduling.west);
-\draw (PO2FPTAS) edge [kEdge,loosely dotted] (optRucksack.west);
+\draw (APX2NPO) edge [kEdge,loosely dashed] (optTSP.west);
+\draw (PTAS2APX) edge [kEdge,loosely dashed] (optMaxSAT.west);
+\draw (FPTAS2PTAS) edge [kEdge,loosely dashed] (optScheduling.west);
+\draw (PO2FPTAS) edge [kEdge,loosely dashed] (optRucksack.west);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Satz von TODA
@@ -531,7 +535,7 @@ at ([yshift=16cm]SatzAlternation.north east)
 \fontsize{33}{33}\selectfont
 
 \node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
-at (PCP.north east) 
+at ([yshift=-1mm]PCP.north east) 
 {
 	\textbf{Satz: Klassenoperatoren} \nodepart{second} 
 	Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
@@ -639,10 +643,10 @@ at ([yshift=62cm] SatzAlternation.north east)
 
 % Logiken und Komplexitätsklassen
 \node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=south east]
-at ([yshift=0cm] ClassOP.north east) 
+at ([yshift=-1mm] ClassOP.north east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
-	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ .
+	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $.
 	
 };
 
