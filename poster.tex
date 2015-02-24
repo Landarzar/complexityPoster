@@ -443,63 +443,12 @@ at (SatzImmerman.north east)
 
 \filldraw [fill=red!30,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=-0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north east) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]SatzAlternation.north east) -- cycle ;
 
-
-%%%%%%%%%%%%%%%%
-% Beweissysteme
-%%%%%%%%%%%%%%%%
-
-
-\fontsize{35}{25}\selectfont
-
-%\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
-
-\node [rotate=90, anchor=north west] at (SatzAlternation.north west) {
-	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
-
-\node (npchar) [anchor=south west] at ([xshift=2.5cm]SatzAlternation.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
-
-\node (mBPP) at ([xshift=1cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
-
-\node (MA) at ([xshift=4cm,yshift=3cm] npchar.north west) {$\mathbf{MA}$};
-
-\node (AM) at ([yshift=2.5cm] MA.north) {$\mathbf{AM}$};
-
-
-\node (Spi2) at ([yshift=2.5cm] AM.north) {$\mathbf{\Sigma^p_2}$};
-
-
-\node (IP) at ([xshift=-2cm,yshift=2.5cm] Spi2.north) {$\mathbf{PSPACE}=\mathbf{IP}$};
-
-\draw (mBPP) edge [kEdge] (MA);
-\draw ([xshift=-8cm]npchar.north) edge [kEdge] (MA);
-
-\draw (MA) edge [kEdge] (AM);
-\draw (AM) edge [kEdge] (Spi2);
-\draw (Spi2) edge [kEdge] (IP);
-
-
-% Das PCP Theorem
-\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=north east]
-at ([yshift=16cm]SatzAlternation.north east) 
-{
-	\textbf{PCP} \textit{(probabilistically checkable proof)} \nodepart{second} 
-	Die Klasse $PCP(\mathcal{F},\mathcal{G})$ der Sprachen $L$ für die es einen Verifizierer $V$ gibt der
-	\begin{itemize}
-	\item $\leq r(n)$ Zufallsbits verwendet, \hfill($r\in\mathcal{F}$)
-	\item $\leq q(n)$ Bits der Eingabe ließt, \hfill($q\in\mathcal{G}$)
-	\item für einen Beweis $\pi$ alles aus $L$ akzeptiert,
-	\item und für jeden Beweis kein $x\notin L$ mit W'keit $>\frac{1}{2}$ akzeptiert.
-	\end{itemize}
-};
-
-\draw [line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] PCP.north west)  -- ([yshift=16cm-0.5\pgflinewidth]SatzAlternation.north west);
-
 %%%%%%%%%%%%%%%%
 % NPO Hierarchie
 %%%%%%%%%%%%%%%%
 \fontsize{45}{33}\selectfont
 
-\node (optimierung) [rotate=90, anchor=north west] at ([yshift=16cm] SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
+\node (optimierung) [rotate=90, anchor=north west] at (SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimierung}};
 
 \fontsize{35}{25}\selectfont
 
@@ -529,13 +478,15 @@ at ([yshift=16cm]SatzAlternation.north east)
 \draw (FPTAS2PTAS) edge [kEdge,loosely dashed] (optScheduling.west);
 \draw (PO2FPTAS) edge [kEdge,loosely dashed] (optRucksack.west);
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Satz von TODA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \fontsize{33}{33}\selectfont
 
 \node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
-at ([yshift=-1mm]PCP.north east) 
+at ([yshift=-1mm]SatzAlternation.north east) 
 {
 	\textbf{Satz: Klassenoperatoren} \nodepart{second} 
 	Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
@@ -555,13 +506,59 @@ at ([yshift=-1mm]PCP.north east)
 
 \node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Trennende\\ Beispiele};
 
+%%%%%%%%%%%%%%%%
+% Beweissysteme
+%%%%%%%%%%%%%%%%
+
+
+\fontsize{35}{25}\selectfont
+
+%\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+
+\node (proofsystem) [rotate=90, anchor=north west] at ([yshift=16cm] SatzAlternation.north west) {
+	\fontsize{55}{33}\selectfont \textbf{Beweissysteme}};
+
+\node (npchar) [anchor=south west] at ([xshift=2.5cm,yshift=-1cm]proofsystem.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
+\node (mBPP) at ([xshift=1cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
+\node (MA) at ([xshift=4cm,yshift=3cm] npchar.north west) {$\mathbf{MA}$};
+\node (AM) at ([yshift=2.5cm] MA.north) {$\mathbf{AM}$};
+\node (Spi2) at ([yshift=2.5cm] AM.north) {$\mathbf{\Sigma^p_2}$};
+\node (IP) at ([xshift=-2cm,yshift=2.5cm] Spi2.north) {$\mathbf{PSPACE}=\mathbf{IP}$};
+
+\draw (mBPP) edge [kEdge] (MA);
+\draw ([xshift=-8cm]npchar.north) edge [kEdge] (MA);
+
+\draw (MA) edge [kEdge] (AM);
+\draw (AM) edge [kEdge] (Spi2);
+\draw (Spi2) edge [kEdge] (IP);
+
+
+% Das PCP Theorem
+\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=north east]
+at ([yshift=16cm-1mm]ClassOP.north east) 
+{
+	\textbf{PCP} \textit{(probabilistically checkable proof)} \nodepart{second} 
+	Die Klasse $PCP(\mathcal{F},\mathcal{G})$ der Sprachen $L$ für die es einen Verifizierer $V$ gibt der
+	\begin{itemize}
+	\item $\leq r(n)$ Zufallsbits verwendet, \hfill($r\in\mathcal{F}$)
+	\item $\leq q(n)$ Bits der Eingabe ließt, \hfill($q\in\mathcal{G}$)
+	\item für einen Beweis $\pi$ alles aus $L$ akzeptiert,
+	\item und für jeden Beweis kein $x\notin L$ mit W'keit $>\frac{1}{2}$ akzeptiert.
+	\end{itemize}
+};
+
+\coordinate (temp2) at (ClassOP.north west -| SatzAlternation.north west);
+
+\draw [line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] ClassOP.north west)  -- (temp2);
+
+
 %%%%%%%%%%%%%%
 % W-Hierarchie
 %%%%%%%%%%%%%%
 
 \fontsize{35}{25}\selectfont
 
-\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] optimierung.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] proofsystem.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
 
 \node (fpt) [anchor=south west] at ([xshift=1.3cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
@@ -643,7 +640,7 @@ at ([yshift=62cm] SatzAlternation.north east)
 
 % Logiken und Komplexitätsklassen
 \node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=south east]
-at ([yshift=-1mm] ClassOP.north east) 
+at ([yshift=-1mm] PCP.north east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
 	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $.
