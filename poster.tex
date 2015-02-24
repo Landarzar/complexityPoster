@@ -384,14 +384,15 @@ at (NPtiling.south west)
 %   \textbf{Komplexität:} NP-Vollständig
 % };
 
-\def\satzW{32cm}
 
 %%%%%%%%%%%%%%%%
 % Sätze
 %%%%%%%%%%%%%%%%
+\def\satzW{32cm}
+\def\satzWmin{33cm}
 
 
-\node (TimeHierarchie) [satz,text width=\satzW, anchor=south east] 
+\node (TimeHierarchie) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at ([xshift=-1.5cm,yshift=1.5cm] current page.south east) 
 {
 	\textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
@@ -400,7 +401,7 @@ at ([xshift=-1.5cm,yshift=1.5cm] current page.south east)
 	So gilt: \[\mathbf{TIME(f)\subsetneq TIME(g)}\]
 };
 
-\node (SpaceHierarchie) [satz2,text width=\satzW, anchor=south east] 
+\node (SpaceHierarchie) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at (TimeHierarchie.north east) 
 {
 	\textbf{Platzhierarchie-Satz} \hfill Stearns, Szepietowski  \nodepart{second} 
@@ -410,7 +411,7 @@ at (TimeHierarchie.north east)
 	\[\mathbf{NSPACE(f)\subsetneq NSPACE(g)}\]
 };
 
-\node (SatzSavitch) [satz,text width=\satzW, anchor=south east] 
+\node (SatzSavitch) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at (SpaceHierarchie.north east) 
 {
 	\textbf{Satz von Savitch} \hfill Savitch  \nodepart{second} 
@@ -418,7 +419,7 @@ at (SpaceHierarchie.north east)
 	$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
 };
 
-\node (SatzImmerman) [satz2,text width=\satzW, anchor=south east] 
+\node (SatzImmerman) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at (SatzSavitch.north east) 
 {
 	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
@@ -426,7 +427,7 @@ at (SatzSavitch.north east)
 	$$ \mathbf{NSPACE(S)}=\mathbf{coNSPACE(S)} $$
 };
 
-\node (SatzAlternation) [satz,text width=\satzW, anchor=south east] 
+\node (SatzAlternation) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at (SatzImmerman.north east) 
 {
 	\textbf{Satz} \hfill Chandra, Kozen, Stockmeyer   \nodepart{second} 
@@ -546,7 +547,7 @@ at ([yshift=16cm]SatzAlternation.north east)
 \draw (wP) edge [kEdge] (XP);
 
 % Das Parametrisierte Probleme
-\node (paramProbl) [satz, fill=yellow!40,text width=\satzW, anchor=north east]
+\node (paramProbl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=north east]
 at ([yshift=62cm] SatzAlternation.north east) 
 {
 	\textbf{Parametrisiertes Problem} \nodepart{second} 
@@ -594,7 +595,7 @@ at ([yshift=62cm] SatzAlternation.north east)
 \draw (lPSPACE) edge [kEdge,loosely dotted] (lPSPACED);
 
 % Logiken und Komplexitätsklassen
-\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, anchor=north east]
+\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=north east]
 at ([yshift=0cm] lAC0D.south east) 
 {
 	\textbf{Komplexität einer Logik} \nodepart{second} 
@@ -602,18 +603,6 @@ at ([yshift=0cm] lAC0D.south east)
 	
 };
 
-% Logiken und Komplexitätsklassen
-\node (logikACompl2) [satz,text width=\satzW,minimum width=\satzW, anchor=south east] 
-at (SatzAlternation.north east) 
-{
-	\textbf{Komplexität einer Logik} \nodepart{second} 
-	Eine Logik $\mathcal{L}$ hat die Komplexität $\mathcal{C}$, falls für jede geschlossene Formel $\varphi\in\mathcal{L}$ gilt, dass $ \{\text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi) \}\in\mathcal{C} $ 
-	
-};
-
-\draw [thick,red]([xshift=-1.5cm]current page.east) -- ([xshift=-(1.5cm+33cm)] current page.east);
-\fontsize{45}{33}\selectfont
-\draw [thick,red] ([xshift=-1.5cm,yshift=-2cm]current page.east) -- ([xshift=-\satzW,yshift=-2cm] current page.east);
 
 
 
