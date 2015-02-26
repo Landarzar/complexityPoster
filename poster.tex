@@ -401,8 +401,7 @@ at ([xshift=-1.5cm,yshift=1.5cm] current page.south east)
 {
 	\textbf{Zeithierachie-Satz} \hfill Hartmanis, Stearns  \nodepart{second} 
 	Seien $f,g$ zeitkonstruierbar mit 
-	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$ . 
-	So gilt: \[\mathbf{TIME(f)\subsetneq TIME(g)}\]
+	$f(n)\in\Omega(n)$ und $g(n)\in\omega(f(n)\log (f(n)))$, so gilt: \[\mathbf{TIME(f)\subsetneq TIME(g)}\]
 };
 
 \node (SpaceHierarchie) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
@@ -483,7 +482,7 @@ at (SatzImmerman.north east)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Satz von TODA
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\fontsize{33}{33}\selectfont
+\fontsize{37}{33}\selectfont
 
 \node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
 at ([yshift=-1mm]SatzAlternation.north east) 
@@ -494,7 +493,7 @@ at ([yshift=-1mm]SatzAlternation.north east)
 		\mathbf{BP}\cdot\mathbf{BP}\cdot\mathcal{C} & \subseteq\mathbf{BP}\cdot\mathcal{C}\\
 		\oplus\cdot\oplus\cdot\mathcal{C}           & \subseteq\oplus\mathcal{C}\\
 		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
-		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+%		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
 		\exists\cdot\mathcal{C}                     & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
 		\exists\cdot\mathbf{BP}\cdot\mathcal{C}     & \subseteq\mathbf{BP}\cdot\exists\cdot\mathcal{C}\\
 		\exists\cdot\mathbf{BP}\cdot\mathbf{P}      & =\mathbf{MA}\\
@@ -590,7 +589,7 @@ at ([yshift=16cm-1mm]ClassOP.north east)
 at ([yshift=62cm] SatzAlternation.north east) 
 {
 	\textbf{Parametrisiertes Problem} \nodepart{second} 
-	Ein Tupel $(Q,\kappa)$ heißt parametrisiertes Problem falls $Q\subseteq\Sigma^\ast$ und $\kappa:\Sigma^\ast\to\mathbb{N}$ in polynomieller Zeit berechenbar ist.
+	Ein Tupel $(Q,\kappa)$ heißt parametrisiertes Problem, falls $Q\subseteq\Sigma^\ast$ und $\kappa:\Sigma^\ast\to\mathbb{N}$ in polynomieller Zeit berechenbar ist.
 };
 
 %%%%%%%%%%%%%%
