@@ -467,10 +467,10 @@ at (SatzImmerman.north east)
 \coordinate (PTAS2APX) at ($ (APX) !.5! (PTAS) $);
 \coordinate (FPTAS2PTAS) at ($ (PTAS) !.5! (FPTAS) $);
 \coordinate (PO2FPTAS) at ($ (FPTAS) !.5! (PO) $);
-\node (optTSP)        [anchor=east] at ([xshift=12cm] APX2NPO) {\textbf{\textsc{TSP}}};
-\node (optMaxSAT)     [anchor=east] at ([xshift=12cm] PTAS2APX) {\textbf{\textsc{MAX-SAT}}};
-\node (optScheduling) [anchor=east] at ([xshift=12cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
-\node (optRucksack)   [anchor=east] at ([xshift=12cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
+\node (optTSP)        [anchor=east] at ([xshift=11.5cm] APX2NPO) {\textbf{\textsc{TSP}}};
+\node (optMaxSAT)     [anchor=east] at ([xshift=11.5cm] PTAS2APX) {\textbf{\textsc{MAX-SAT}}};
+\node (optScheduling) [anchor=east] at ([xshift=11.5cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
+\node (optRucksack)   [anchor=east] at ([xshift=11.5cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
  
 \draw (APX2NPO) edge [kEdge,loosely dashed] (optTSP.west);
 \draw (PTAS2APX) edge [kEdge,loosely dashed] (optMaxSAT.west);
@@ -487,8 +487,9 @@ at (SatzImmerman.north east)
 \node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
 at ([yshift=-1mm]SatzAlternation.north east) 
 {
-	\textbf{Satz: Klassenoperatoren} \nodepart{second} 
-	Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
+	\textbf{\fontsize{35}{33}\selectfont Satz: Klassenoperatoren} \nodepart{second} 
+	\fontsize{35}{33}\selectfont Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
+	\fontsize{37}{33}\selectfont
 	{\boldmath\begin{align*}
 		\mathbf{BP}\cdot\mathbf{BP}\cdot\mathcal{C} & \subseteq\mathbf{BP}\cdot\mathcal{C}\\
 		\oplus\cdot\oplus\cdot\mathcal{C}           & \subseteq\oplus\mathcal{C}\\
@@ -501,7 +502,8 @@ at ([yshift=-1mm]SatzAlternation.north east)
 		\end{align*}}
 };
 
-\node (fPvsNP) [anchor=north west] at (ClassOP.north west -| optimierung.north east) {\textbf{Falls\boldmath\ $\mathbf{P}\neq \mathbf{NP}$}};
+\node (fPvsNP) [anchor=north west] at (ClassOP.north west -| optimierung.north east) {
+	\fontsize{30}{33}\selectfont\textbf{Falls\boldmath\ $\mathbf{P}\neq \mathbf{NP}$}};
 
 \node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Trennende\\ Beispiele};
 
