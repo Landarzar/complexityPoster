@@ -53,7 +53,7 @@
 % Titel
 \node  [name=titel,anchor=north east] at ([xshift=-1.5cm,yshift=-3.5cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Komplexitätstheorie};
 
-\node [font=\normalsize,anchor=north west,align=left] at (komplx.south west) {Poster von Kai Sauerwald. Nach Folien von Prof. Schwentick.};
+\node [font=\normalsize,anchor=north east,align=left] at (komplx.south east) {Poster von Kai Sauerwald. Nach Folien von Prof. Schwentick.};
 \tikzstyle{hier}=[node distance=1cm]
 
 
@@ -250,7 +250,7 @@ at (UREACH.north west)
 at (REACH.north west) 
 { 
 	\textbf{\textsc{AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
-	\textbf{Gegeben:} Variablenmenge $V$, Domäne $U$, Menge von Constraints $\mathcal{C}$ \newline
+	\textbf{Gegeben:} Variablenmenge $V$, Domäne $U$, Constraints $C$, so dass $ (V,C) $ azyklisch ist \newline
 	\textbf{Frage:} Gibt es eine Lösung $\sigma\subseteq V\times U$, so dass $\sigma(\mathcal{C})$ wahr wird?
 };
 \draw ([xshift=-2cm] LOGCFL.north) [line width=1mm] edge (acyclicCSP.east);
@@ -329,7 +329,7 @@ at  (2PTiling.south west)
 {
 	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
-	\textbf{Gegeben:} Quantifizierte AL Formel $\varphi$ (in Pränex-Normalform und KNF)\newline
+	\textbf{Gegeben:} Quantifizierte AL Formel $\varphi$\linebreak (in Pränex-Normalform und KNF)\newline
 	\textbf{Frage:} Ist $\varphi$ erfüllbar?
 	\nodepart{third}
 	\textbf{Komplexität:} PSPACE-Vollständig
@@ -425,7 +425,7 @@ at (SpaceHierarchie.north east)
 \node (SatzImmerman) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
 at (SatzSavitch.north east) 
 {
-	\textbf{Satz} \hfill Immerman, Szelepcsenyi  \nodepart{second}
+	\textbf{Satz} \hfill Immerman, Szelepcsényi  \nodepart{second}
 	Für jedes platzkonstruierbare $S$ mit $S(n)\geq\log n$ gilt:
 	$$ \mathbf{NSPACE(S)}=\mathbf{coNSPACE(S)} $$
 };
@@ -505,7 +505,7 @@ at ([yshift=-1mm]SatzAlternation.north east)
 \node (fPvsNP) [anchor=north west] at (ClassOP.north west -| optimierung.north east) {
 	\fontsize{30}{33}\selectfont\textbf{Falls\boldmath\ $\mathbf{P}\neq \mathbf{NP}$}};
 
-\node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Trennende\\ Beispiele};
+\node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Trennendes\\ Beispiel};
 
 %%%%%%%%%%%%%%%%
 % Beweissysteme
@@ -559,7 +559,7 @@ at ([yshift=16cm-1mm]ClassOP.north east)
 
 \fontsize{35}{25}\selectfont
 
-\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] proofsystem.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskompl.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=21cm] proofsystem.north west) {\fontsize{55}{33}\selectfont \textbf{Beschreibungskomplex.} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrisierung}};
 
 \node (fpt) [anchor=south west] at ([xshift=1.3cm,yshift=0.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
 \node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
