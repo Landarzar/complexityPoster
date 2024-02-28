@@ -1,0 +1,710 @@
+\documentclass{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+%\usepackage[scaled=0.85]{beramono}
+\usepackage{ucs}
+\usepackage{cite}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[ngerman]{babel}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{geometry}
+\geometry{a0paper, top=0mm, inner=0mm, outer=0mm, bottom=0mm, headsep=0mm, footskip=0mm}
+%\usepackage[bold,full]{complexity}
+\usepackage{tikz}
+
+\usetikzlibrary{decorations.markings,decorations.pathreplacing}
+\usetikzlibrary{shapes.geometric,shapes,automata,positioning}
+\usetikzlibrary{shadows,calc,backgrounds}
+
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\newcommand{\parity}{\uplus}
+
+\begin{document}
+	
+	\def\ND{3.7cm}
+	
+\begin{tikzpicture}[node distance=\ND,thick, remember picture, overlay]
+\tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!60]
+\tikzstyle{defi2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!40]
+\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!50]
+\tikzstyle{satz2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!30]
+\tikzstyle{klass}=[]
+\tikzstyle{klassNP}=[node distance=5cm]
+\tikzstyle{kEdge}=[line width=2mm]
+\tikzstyle{sideklass}=[node distance = 11cm,]
+% \newcommand{\src}[1]{#1}
+\newcommand{\src}[1]{}
+
+
+% Rahmen 
+%\draw [very thick,draw,black] ([xshift=1.5cm,yshift=1.5cm] current page.south west) -- ([xshift=1.5cm,yshift=-3.5cm] current page.north west) -- ([xshift=-1.5cm,yshift=-3.5cm] current page.north east) -- ([xshift=-1.5cm,yshift=1.5cm] current page.south east) -- cycle;
+
+% Titel
+\node  [name=titel,anchor=north east] at ([xshift=-1.5cm,yshift=-3.5cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Complexity Theory};
+
+\node [font=\normalsize,anchor=north east,align=left] at (komplx.south east) {Poster by Dr. Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen); based on a lecture by Prof. Dr. Schwentick (LogiDAC, TU Dortmund University).};
+\tikzstyle{hier}=[node distance=1cm]
+
+
+%%%%%%%%%%%%%%%%%
+%%  Baum
+%%%%%%%%%%%%%%%
+
+\fontsize{45}{33}\selectfont
+\node (AC0) [klass, anchor=south] at ([xshift=-1cm,yshift=2cm] current page.south) {$\mathbf{AC^0}$} ;
+% \node (ACC0) [klass,above of= AC0] {$\mathbf{ACC^0}$} ;
+\node (TC0) [klass,above  of= AC0] {$\mathbf{TC^0}$} ;
+\node (NC1) [klass,above of= TC0] {$\mathbf{NC^1}$} ;
+
+\node (L) [klass,above of= NC1] {$\mathbf{L}=\mathbf{SL}$} ;
+\node (NL) [klass,above  of= L] {$\mathbf{NL}$} ;
+\node (LOGCFL) [klass,above  of= NL] {$\mathbf{LOGCFL}$} ;
+\node (AC1) [klass,above of= LOGCFL] {$\mathbf{AC^1}$} ;
+\node (TC1) [klass,above of= AC1] {$\mathbf{TC^1}$} ;
+\node (NC2) [klass,above of= TC1] {$\mathbf{NC^2}$} ;
+
+\node (ACi) [klass,above of= NC2] {$\mathbf{AC^i}$} ;
+\node (TCi) [klass,above of= ACi] {$\mathbf{TC^i}$} ;
+\node (NCi) [klass,above of= TCi] {$\mathbf{NC^{i+1}}$} ;
+
+\node (NC) [klass,above of= NCi] {$\mathbf{NC}$} ;
+
+
+\node (P) [klass,above of= NC] {$\mathbf{P=AL}$} ;
+\node (ZPP) [klass,above of= P] {$\mathbf{ZPP}$} ;
+\node (coRP) [klassNP,above right of= ZPP] {$\mathbf{coRP}$} ;
+\node (RP) [klassNP,above left of= ZPP] {$\mathbf{RP}$} ;
+\node (BPP) [klassNP,above of= ZPP, node distance=1.8*\ND] {$\mathbf{BPP}$} ;
+\node (coNP) [klassNP,above of= coRP] {$\mathbf{coNP}$} ;
+\node (NP) [klassNP,above of= RP] {$\mathbf{NP}$} ;
+
+\node (DP) [klass,above of= BPP, node distance=1.5*\ND] {$\mathbf{DP}$} ;
+\node (TP2) [klass,above of= DP] {$\mathbf{\Theta^p_2=P^{\Sigma_{1}^p[log]}}$} ;
+\node (DP2) [klass,above of= TP2] {$\mathbf{\Delta^p_2=P^{\Sigma_{1}^p}}$} ;
+\node (SP2) [klassNP,above left of= DP2] {$\mathbf{\Sigma_2^p}$} ;
+\node (PP2) [klassNP,above right of= DP2] {$\mathbf{\Pi_2^p}$} ;
+\node (TP3) [klassNP,above left of= PP2] {$\mathbf{\Theta^p_3=P^{\Sigma_{2}^p[log]}}$} ;
+\node (DP3) [klass,above of= TP3] {$\mathbf{\Delta^p_3=P^{\Sigma_{2}^p}}$} ;
+\node (PH) [klass,above of= DP3] {$\mathbf{PH}$} ;
+
+\node (PSPACE) [klass,above of= PH] {$\mathbf{PSPACE}$} ;
+\node (EXPTIME) [klass,above of= PSPACE]{$\mathbf{EXP}$} ;
+\node (ELEMENTARY) [klass,above of= EXPTIME]{$\mathbf{ELEMENTARY}$} ;
+\node (PR) [klass,above of= ELEMENTARY]{$\mathbf{PR}$} ;
+\node (R) [klass,above of= PR]{$\mathbf{R}$} ;
+\node (coRE) [klass,above right of= R] {$\mathbf{coRE} $};
+\node (RE) [klass,above left of= R] {$\mathbf{RE} $};
+
+\node (AH) [klass,color=gray,above of= R, node distance=2*\ND]{Arithmetical Hierarchy} ;
+
+%\node (REG) [klass, right =of TC0] {$\mathbf{REG}$};
+%\node (CFL) [klass,above =of REG] {$\mathbf{CFL}$};
+
+% \node (POLYLOGSPACE) [sideklass,left of= coRP] {$\mathbf{POLYLOGSPACE}$};
+%\node (Ppp) [left =of PSPACE] {$\mathbf{P^{PP}=P^{\#P}}$};
+%\node (PP) [sideklass,below of= Ppp] {$\mathbf{PP}$};
+
+% \draw (AC0) [kEdge,-|] edge   (ACC0);
+% \draw (ACC0)[kEdge] edge  (TC0);
+
+\draw (AC0) [kEdge,-|] edge   (TC0);
+\draw (TC0) [kEdge]edge  (NC1);
+\draw (NC1) [kEdge]edge  (L);
+\draw (L) [kEdge]edge  (NL);
+\draw (NL)[kEdge] edge  (LOGCFL);
+\draw (LOGCFL)[kEdge] edge  (AC1);
+%\draw (CFL) [kEdge]edge  (LOGCFL);
+%\draw (REG) [kEdge]edge  (NC1);
+%\draw (REG)[kEdge] edge  (CFL);
+\draw (AC1) [kEdge]edge  (TC1);
+\draw (TC1) [kEdge]edge  (NC2);
+\draw (NC2)[kEdge,loosely dashed] edge  (ACi);
+\draw (ACi)[kEdge] edge  (TCi);
+\draw (TCi) [kEdge]edge  (NCi);
+\draw (NCi) [kEdge,loosely dashed]edge  (NC);
+\draw (NC) [kEdge]edge  (P);
+\draw (P) [kEdge]edge  (ZPP);
+\draw (ZPP) [kEdge]edge  (coRP);
+\draw (coRP) [kEdge]edge  (coNP);
+\draw (coRP) [kEdge]edge  (BPP);
+\draw (ZPP) [kEdge]edge  (RP);
+\draw (RP) [kEdge]edge  (BPP);
+\draw (RP) [kEdge]edge  (NP);
+\draw (coNP) [kEdge]edge  (DP);
+\draw (NP) [kEdge]edge  (DP);
+\draw (DP) [kEdge]edge  (TP2);
+\draw (TP2)[kEdge] edge  (DP2);
+\draw (DP2) [kEdge]edge  (SP2);
+\draw (SP2) [kEdge]edge  (TP3);
+\draw (DP2)[kEdge] edge  (PP2);
+\draw (PP2)[kEdge] edge  (TP3);
+\draw (TP3) [kEdge]edge  (DP3);
+\draw (DP3) [kEdge,loosely dashed]edge  (PH);
+\draw (PH) [kEdge]edge  (PSPACE);
+
+
+\draw (PSPACE) [kEdge]edge  (EXPTIME);
+\draw (EXPTIME) [kEdge]edge  (ELEMENTARY);
+\draw (ELEMENTARY) [kEdge]edge  (PR);
+\draw (PR) [kEdge,-|] edge  (R);
+\draw (R) [kEdge,-|] edge  (coRE);
+\draw (R) [kEdge,-|] edge  (RE);
+
+\draw (AH) [kEdge,color=gray,dashed] edge  (coRE);
+\draw (AH) [kEdge,color=gray,dashed] edge  (RE);
+
+%\draw (PH) [kEdge]edge  (Ppp);
+%\draw (PP) [kEdge]edge  (Ppp);
+\node (PP) [color=black!40] at ([xshift=3.25cm,yshift=2cm]PP2) {$\mathbf{PP}$};
+%\begin{scope}[on background layer]
+\draw (PP) [kEdge, bend right=10,color=black!20]edge ([xshift=2cm]PSPACE.south);
+\draw (NP) [color=black!20,bend right=30,kEdge]edge  (PP);
+%\draw (BPP) [color=black!20,bend right=25,kEdge]edge  (PP);
+\draw[color=black!20,kEdge] ([xshift=-0.5cm]BPP.north) to[out=50,in=270,color=black!20,kEdge]  (PP);
+\draw (coNP) [color=black!20,bend right=10,kEdge]edge  (PP);
+%\end{scope}
+
+%\node (time) at (72,17) {$\mathbf{TIME(f)}$};
+%\node (coNTime) [hier,above left =of time] {$\mathbf{co-NTIME(f)}$};
+%\node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
+%\node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
+%\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)=co-NSPACE(f)}$};
+%\node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
+%\node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
+%
+%\draw (time) [kEdge] edge (coNTime) ;
+%\draw (time) [kEdge] edge (NTime) ;
+%\draw (coNTime) [kEdge] edge (space) ;
+%\draw (NTime) [kEdge] edge (space) ;
+%\draw (space) [kEdge] edge (nspace) ;
+%\draw (nspace) [kEdge] edge (time2e) ;
+%\draw (nspace) [kEdge] edge (space2) ;
+
+%%%%%%%%%%%%%%%%
+% Probleme
+%%%%%%%%%%%%%%%%
+
+\def\probW{30cm}
+
+%AC0 Probleme
+%Addition
+\node (ADD) [defi,rectangle split parts=1,text width=\probW,anchor=south west] 
+at ([xshift=1.5cm, yshift=1.5cm] current page.south west) 
+{ 
+	\textbf{\textsc{Addition}}  \hfill in $\mathbf{AC^0}$
+};
+\draw (AC0) [line width=1mm] edge (ADD.east);
+
+%TC0-Vollständige Probleme
+%Multiplikation
+\node (MULT) [defi2,rectangle split parts=1,text width=\probW,anchor=south west] 
+at (ADD.north west) 
+{ 
+	\textbf{\textsc{Multiplikation}}  \hfill $\mathbf{TC^0}$-C
+};
+\draw (TC0) [line width=1mm] edge (MULT.east);
+
+%NC1-Vollständige Probleme
+%Auswertung aussagenlogischer Formeln
+\node (FVP) [defi,text width=\probW,anchor=south west]
+at (MULT.north west) 
+{ 
+	\textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
+	\textbf{Input:} Variable free Boolean formula $B$ \newline
+	\textbf{Decision:} Does $B$ evaluate to true? 
+};
+\draw (NC1) [line width=1mm] edge (FVP.east);
+
+%L-Vollständige Probleme
+%UReach
+\node (UREACH) [defi2,text width=\probW,anchor=south west] 
+at (FVP.north west) 
+{ 
+	\textbf{\textsc{UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
+	\textbf{Input:} Undirected graph $G{=}(V,E)$ and\,${s,t\,{\in} V}$ \newline
+	\textbf{Decision:} Is there a path from $s$ to $t$ in $G$?
+};
+\draw (L.west) [line width=1mm] edge (UREACH.east);
+
+%NL-Vollständige Probleme
+%Reach
+\node (REACH) [defi,text width=\probW,anchor=south west] 
+at (UREACH.north west) 
+{ 
+	\textbf{\textsc{REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
+	\textbf{Input:} Graph $G=(V,E)$ and ${s,t\in V}$ \newline
+	\textbf{Decision:} Is there a path from $s$ to $t$ in $G$?
+};
+\draw (NL.west) [line width=1mm] edge (REACH.east);
+
+%LOGCFL-Vollständige Probleme
+\node (acyclicCSP) [defi2,text width=\probW,anchor=south west] 
+at (REACH.north west) 
+{ 
+	\textbf{\textsc{AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
+	\textbf{Input:} Variables $V$, domain $U$, constraints $C$, such that $ (V,C) $ is acyclic \newline
+	\textbf{Decision:} Is there a solution $\sigma\subseteq V\times U$ such that $\sigma(\mathcal{C})$ is true?
+};
+\draw ([xshift=-2cm] LOGCFL.north) [line width=1mm] edge (acyclicCSP.east);
+
+
+%NC2 Probleme
+%Determinante
+\node (DET) [defi,rectangle split parts=1,text width=\probW, anchor=south west] 
+at (acyclicCSP.north west) 
+{ 
+	\textbf{\textsc{Determinant}} \hfill in $\mathbf{NC^2}$
+};
+\draw (NC2) [line width=1mm] edge [] (DET.east);
+
+% P-Vollständige  Probleme
+\node (HORNSAT) [defi2,text width=\probW,anchor=south west]
+at (DET.north west) 
+{
+	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
+	\textbf{Input:} Finite set of Horn-clauses $K$ \newline
+	\textbf{Decision:} Is $K$ satisfiable?
+};
+\draw (P) [line width=1mm] edge [] (HORNSAT.east);
+
+
+
+% Satz von Rice
+%\node (RICE) [defi,text width=\probW, anchor=north west] 
+%at  ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
+%{
+%	\textbf{Satz von Rice} \src{(GTI  18/10)}
+%	\nodepart{second} 
+%	Für jede nicht triviale Menge $S$ berechenbarer Funktion mit $\emptyset \neq S \neq \mathcal{R}$ gilt:\newline
+%	Die Sprache $C(S):=\{w|f_{M_w} \in S\}]$ ist undecc
+%	\nodepart{third} 
+%	\textbf{Komplexität:} $C(S)$ ist $\mathbf{RE}$-Hart
+%};
+%\draw (RE) [line width=1mm] edge [] (RICE.west);
+
+\node (TMHALT) [defi,rectangle split parts=1,text width=\probW, anchor=north west] 
+at ([xshift=1.5cm,yshift=-3.5cm] current page.north west) 
+{ 
+	\textbf{\textsc{TM-Halt}} \hfill in $\mathbf{RE}$
+};
+\draw (RE) [line width=1mm] edge [] (TMHALT.east);
+
+% 2-PlayerCorridorTiling
+\node (FOString) [defi2,text width=\probW, anchor=north west] 
+at  (TMHALT.south west) 
+{
+	\textbf{\textsc{SAT-FO-String}}  \hfill in $\mathbf{R}$
+	\nodepart{second} 	
+%	\begin{description}
+%	\item[Input: ] Eine PL Formel $\varphi$ über Strings
+%	\item[Decision: ] Ist $\varphi$ satisfiable?
+%	\end{description}
+	\textbf{Input:} A first-order formula $\varphi$ for strings \newline
+	\textbf{Decision:} Is $\varphi$ satisfiable?
+};
+\draw ([yshift=0cm] FOString.east) [line width=1mm] edge [] (R.west);
+
+% 2-PlayerCorridorTiling
+\node (2PTiling) [defi,text width=\probW, anchor=north west] 
+at  (FOString.south west) 
+{
+	\textbf{\textsc{2-PlayerCorridorTiling}}  \hfill $\mathbf{EXP}$-C 
+	\nodepart{second} 
+	\textbf{Input:} Tilings $T$ and integer $k$ (unary) \newline
+	\textbf{Decision:} Does player one has a winning strategy in the tiling game?
+};
+\draw ([yshift=-3cm] 2PTiling.east) [line width=1mm] edge [bend right=0] (EXPTIME.west);
+
+%QBF
+\node (QBF) [defi2,text width=\probW, anchor=north west] 
+at  (2PTiling.south west) 
+{
+	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
+	\nodepart{second} 
+	\textbf{Input:} Quantified Boolean formula $\varphi$\linebreak (in prenex normal form and CNF)\newline
+	\textbf{Decision:} Is $\varphi$ satisfiable?
+	\nodepart{third}
+	\textbf{Komplexität:} PSPACE-Vollständig
+};
+\draw (QBF.east) [line width=1mm] edge [] (PSPACE);
+
+%2Tiling
+\node (2Tiling) [defi,text width=\probW, anchor=north west] 
+at  (QBF.south west) 
+{
+	\textbf{\textsc{CorridorTiling}}  \hfill $\mathbf{PSPACE}$-C 
+	\nodepart{second} 
+	\textbf{Input:} Tilings $T$ and integer $k$ (unary) \newline
+	\textbf{Decision:} Is there a $k\times l$ tiling for $T$?
+};
+\draw ([yshift=1cm]2Tiling.east) [line width=1mm] edge [] (PSPACE);
+
+%SAT-UNAT
+\node (SAT-UNSAT) [defi2,text width=\probW,anchor=north west]
+at (2Tiling.south west) 
+{
+	\textbf{\textsc{SAT-UNSAT}} \hfill $\mathbf{DP}$-C  \nodepart{second} 
+	\textbf{Input:} Boolean formulas $\varphi_1,\varphi_2$ in CNF \newline
+	\textbf{Decision:} Is $\varphi_1$ satisfiable and\,\( \varphi_2 \)\,unsatisfiable?
+};
+\draw ([yshift=-2cm] SAT-UNSAT.east) [line width=1mm] to[out=-20,in=180] (DP);
+
+%SAT
+\node (SAT) [defi2,text width=\probW,anchor=north west]
+at (SAT-UNSAT.south west) 
+{
+	\textbf{\textsc{SAT}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	\textbf{Input:} Boolean formula $\varphi$ in CNF \newline
+	\textbf{Decision:} Is $\varphi$ satisfiable?
+};
+\draw ([yshift=-1cm]SAT.east) [line width=1mm] edge [] (NP);
+
+% NP-Tiling
+\node (NPtiling) [defi,text width=\probW,anchor=north west]
+at (SAT.south west) 
+{
+	\textbf{\textsc{Tiling}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	\textbf{Input:} Tilings $T$ und integers $c,r$ (unary) \newline
+	\textbf{Decision:} Is there a $c\times r$ tiling for $T$?
+};
+\draw ([yshift=-0.5cm]NPtiling.east) [line width=1mm] edge [] (NP);
+
+% TSP
+\node (TSP) [defi2,text width=\probW,anchor=north west]
+at (NPtiling.south west) 
+{
+	\textbf{\textsc{TSP}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	\textbf{Input:} Weighted Graph $G$ and $k\in \mathbb{N}$ \newline
+	\textbf{Decision:} Is there a circle in $G$  with a weight smaller or equal to $ k$ that visits all nodes?
+};
+\draw (TSP.east) [line width=1mm] edge [] (NP);
+
+
+% \node [defi] at (\leftPr+10,45) 
+% {
+%   \textsc{TSP} (GTI 21/08)  \nodepart{second} 
+%   \textbf{Input:} Entfernungsgraph $G,\ k\in \mathbb{N}$
+%   \newline
+%   \textbf{Decision:} Hat $G$ einen Kreis durch alle Knoten mit Gewicht $\leq k$?
+%   \nodepart{third}
+%   \textbf{Komplexität:} NP-Vollständig
+% };
+
+
+%%%%%%%%%%%%%%%%
+% Sätze
+%%%%%%%%%%%%%%%%
+\def\satzW{32cm}
+\def\satzWmin{33cm}
+
+
+\node (TimeHierarchie) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
+at ([xshift=-1.5cm,yshift=1.5cm] current page.south east) 
+{
+	\textbf{Time hierarchy theorem} \hfill Hartmanis, Stearns  \nodepart{second} 
+	For  time constructible $f,g$ with 
+	$f(n)\in\Omega(n)$ and $g(n)\in\omega(f(n)\cdot\log (f(n)))$ holds: \[\mathbf{TIME(f)\subsetneq TIME(g)}\]
+};
+
+\node (SpaceHierarchie) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
+at (TimeHierarchie.north east) 
+{
+	\textbf{Space hierarchy theorem} \hfill Stearns, Szepietowski  \nodepart{second} 
+	For  time constructible $f,g$ with 
+	$f(n)\in\Omega(\log n)$ and $g(n)\in\omega(f(n))$ holds:
+	\[\mathbf{SPACE(f)\subsetneq SPACE(g)}\]
+	\[\mathbf{NSPACE(f)\subsetneq NSPACE(g)}\]
+};
+
+\node (SatzSavitch) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
+at (SpaceHierarchie.north east) 
+{
+	\textbf{Savitch's theorem} \hfill Savitch  \nodepart{second} 
+	For space constructible $S$  with $S(n)\geq \log n$ holds:
+	$$ \mathbf{NSPACE(S)\subseteq SPACE(S^2)}$$
+};
+
+\node (SatzImmerman) [satz2,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
+at (SatzSavitch.north east) 
+{
+	\textbf{Immerman–Szelepcsényi theorem} 
+%	\hfill Immerman, Szelepcsényi  
+	\nodepart{second}
+	For space constructible $S$ with $S(n)\geq\log n$ holds:
+	$$ \mathbf{NSPACE(S)}=\mathbf{coNSPACE(S)} $$
+};
+
+\node (SatzAlternation) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
+at (SatzImmerman.north east) 
+{
+	\textbf{Theorem} \hfill Chandra, Kozen, Stockmeyer   \nodepart{second} 
+	\begin{enumerate}[(a)]
+	\item Ist $S(n)=\Omega(\log n)$, so gilt $\mathbf{ASPACE(S)\subseteq TIME(2^{\mathcal{O}(S)})}$
+	\item Ist $T(n)=\Omega(n)$, so gilt $\mathbf{TIME(T)\subseteq ASPACE(\log T)}$
+	\end{enumerate}
+};
+
+\filldraw [fill=red!30,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north west) -- ([xshift=-0.5\pgflinewidth,yshift=62cm-0.5\pgflinewidth] SatzAlternation.north east) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]SatzAlternation.north east) -- cycle ;
+
+%%%%%%%%%%%%%%%%
+% NPO Hierarchie
+%%%%%%%%%%%%%%%%
+\fontsize{45}{33}\selectfont
+
+\node (optimierung) [rotate=90, anchor=north west] at (SatzAlternation.north west) {\fontsize{55}{33}\selectfont \textbf{Optimization}};
+
+\fontsize{35}{25}\selectfont
+
+\node (PO) [anchor=south east] at ([xshift=4cm] optimierung.south west) {$\mathbf{PO}$} ;
+\node (FPTAS) [hier,node distance=1.5cm,above =of PO] {$\mathbf{FPTAS}$} ;
+\node (PTAS) [hier,node distance=1.5cm,above =of FPTAS] {$\mathbf{PTAS}$} ;
+\node (APX) [hier,node distance=1.5cm,above =of PTAS] {$\mathbf{APX}$} ;
+\node (NPO) [hier,node distance=1.5cm,above =of APX] {$\mathbf{NPO}$} ;
+
+\draw (PO) edge [kEdge,-|] (FPTAS);
+\draw (FPTAS) edge [kEdge,-|] (PTAS);
+\draw (PTAS) edge [kEdge,-|] (APX);
+\draw (APX) edge [kEdge,-|] (NPO);
+
+
+\coordinate (APX2NPO) at ($ (NPO) !.5! (APX) $);
+\coordinate (PTAS2APX) at ($ (APX) !.5! (PTAS) $);
+\coordinate (FPTAS2PTAS) at ($ (PTAS) !.5! (FPTAS) $);
+\coordinate (PO2FPTAS) at ($ (FPTAS) !.5! (PO) $);
+\node (optTSP)        [anchor=east] at ([xshift=11.5cm] APX2NPO) {\textbf{\textsc{TSP}}};
+\node (optMaxSAT)     [anchor=east] at ([xshift=11.5cm] PTAS2APX) {\textbf{\textsc{MAX-SAT}}};
+\node (optScheduling) [anchor=east] at ([xshift=11.5cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
+\node (optRucksack)   [anchor=east] at ([xshift=11.5cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
+ 
+\draw (APX2NPO) edge [kEdge,loosely dashed] (optTSP.west);
+\draw (PTAS2APX) edge [kEdge,loosely dashed] (optMaxSAT.west);
+\draw (FPTAS2PTAS) edge [kEdge,loosely dashed] (optScheduling.west);
+\draw (PO2FPTAS) edge [kEdge,loosely dashed] (optRucksack.west);
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Satz von TODA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\fontsize{37}{33}\selectfont
+
+\node (ClassOP) [satz, fill=blue!40,text width=15cm, anchor=south east]
+at ([yshift=-1mm]SatzAlternation.north east) 
+{
+	\textbf{\fontsize{35}{33}\selectfont Satz: Klassenoperatoren} \nodepart{second} 
+	\fontsize{35}{33}\selectfont Sei $\mathcal{C}$ unter Turing-Reduktion abgeschloseen. Dann gilt:
+	\fontsize{37}{33}\selectfont
+	{\boldmath\begin{align*}
+		\mathbf{BP}\cdot\mathbf{BP}\cdot\mathcal{C} & \subseteq\mathbf{BP}\cdot\mathcal{C}\\
+		\oplus\cdot\oplus\cdot\mathcal{C}           & \subseteq\oplus\mathcal{C}\\
+		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+%		\oplus\cdot\mathbf{BP}\cdot\mathcal{C}      & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+		\exists\cdot\mathcal{C}                     & \subseteq\mathbf{BP}\cdot\oplus\cdot\mathcal{C}\\
+		\exists\cdot\mathbf{BP}\cdot\mathcal{C}     & \subseteq\mathbf{BP}\cdot\exists\cdot\mathcal{C}\\
+		\exists\cdot\mathbf{BP}\cdot\mathbf{P}      & =\mathbf{MA}\\
+		\mathbf{BP}\cdot\exists\cdot\mathbf{P}      & =\mathbf{AM}
+		\end{align*}}
+};
+
+\node (fPvsNP) [anchor=north west] at (ClassOP.north west -| optimierung.north east) {
+	\fontsize{30}{33}\selectfont\textbf{For \boldmath\ $\mathbf{P}\neq \mathbf{NP}$}};
+
+\node (fPvsNP) [anchor=north east, text width=7cm, align=right] at ([xshift=0cm,yshift=0cm] ClassOP.north west) {\fontsize{25}{10}\selectfont Separated\,by};
+
+%%%%%%%%%%%%%%%%
+% Beweissysteme
+%%%%%%%%%%%%%%%%
+
+
+\fontsize{35}{25}\selectfont
+
+%\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
+
+\node (proofsystem) [rotate=90, anchor=north west] at (ClassOP.north west-| SatzAlternation.north west) {
+	\fontsize{55}{33}\selectfont \textbf{Proof systems}};
+
+\node (npchar) [anchor=south west] at ([xshift=2.5cm,yshift=0cm]proofsystem.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
+\node (mBPP) at ([xshift=1.2cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
+\node (MA) at ([xshift=4cm,yshift=3cm] npchar.north west) {$\mathbf{MA}$};
+\node (AM) at ([yshift=2.5cm] MA.north) {$\mathbf{AM}$};
+\node (Spi2) at ([yshift=2.5cm] AM.north) {$\mathbf{\Pi^p_2}$};
+\node (IP) at ([xshift=-1.5cm,yshift=2.5cm] Spi2.north) {$\mathbf{PSPACE}=\mathbf{IP}$};
+
+\draw (mBPP) edge [kEdge] (MA);
+\draw ([xshift=-8cm]npchar.north) edge [kEdge] (MA);
+
+\draw (MA) edge [kEdge] (AM);
+\draw (AM) edge [kEdge] (Spi2);
+\draw (Spi2) edge [kEdge] (IP);
+
+
+% Das PCP Theorem
+\node (PCP) [satz, fill=yellow!40,text width=22cm, anchor=north east]
+at ([yshift=16.5cm-1mm]ClassOP.north east) 
+{
+%	\textbf{PCP} \textit{(probabilistically checkable proof)} \nodepart{second} 
+%	Die Klasse $PCP(\mathcal{F},\mathcal{G})$ der Sprachen $L$ für die es einen Verifizierer $V$ gibt der
+%	\begin{itemize}
+%	\item $\leq r(n)$ Zufallsbits verwendet, \hfill($r\in\mathcal{F}$)
+%	\item $\leq q(n)$ Bits des Beweises ließt, \hfill($q\in\mathcal{G}$)
+%	\item für einen Beweis $\pi$ alles aus $L$ akzeptiert,
+%	\item und für jeden Beweis kein $x\notin L$ mit W'keit $>\frac{1}{2}$ akzeptiert.
+%	\end{itemize}
+	\textbf{PCP} \textit{(probabilistically checkable proof)} \nodepart{second} 
+$PCP(\mathcal{F},\mathcal{G})$ is the class of languages $L$ such there is a verifier $V$ that
+\begin{itemize}
+	\item uses $\leq r(n)$ random bits, \hfill($r\in\mathcal{F}$)
+	\item reads $\leq q(n)$ bits of the proof, \hfill($q\in\mathcal{G}$)
+	\item accepts for a proof $\pi$ everything from~$L$
+	 and does not accept any $x\notin L$ with probability $>\frac{1}{2}$.
+\end{itemize}
+};
+
+\coordinate (temp2) at (ClassOP.north west -| SatzAlternation.north west);
+
+\draw [line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth] ClassOP.north west)  -- (temp2);
+
+
+%%%%%%%%%%%%%%
+% W-Hierarchie
+%%%%%%%%%%%%%%
+
+\fontsize{35}{25}\selectfont
+
+\node (Parametrisierung) [rotate=90, anchor=north west, rectangle split, rectangle split parts=2, rectangle split part align={left, left}] at ([yshift=22cm] proofsystem.north west) {\fontsize{55}{33}\selectfont \textbf{Descriptive Complexity} \nodepart{second}\fontsize{55}{33}\selectfont\textbf{\& Parametrization}};
+
+\node (fpt) [anchor=south west] at ([xshift=2cm,yshift=1.5cm]Parametrisierung.south west) {$\mathbf{FPT}$};
+\node (w1) [hier,above =of fpt] {$\mathbf{W[1]=A[1]}$};
+\node (w2) [hier,above =of w1] {$\mathbf{W[2]}$};
+\node (wSAT) [node distance=2cm,above =of w2] {$\mathbf{W[SAT]}$};
+\node (wP) [hier,above =of wSAT] {$\mathbf{W[P]}$};
+\node (paraNP) [hier,above =of wP] {$\mathbf{paraNP}$};
+
+\node (aStar) [node distance=1.5cm,right  =of wP] {$\mathbf{AW[*]}$};
+\node (a2) [node distance=1.7cm,below =of aStar] {$\mathbf{A[2]}$};
+\node (XP) [hier,above =of aStar] {$\mathbf{XP}$};
+
+\draw (fpt) edge [kEdge] (w1);
+\draw (w1) edge [kEdge] (w2);
+\draw (w2) edge [kEdge] (a2);
+\draw (w2) edge [kEdge,loosely dashed] (wSAT);
+\draw (wSAT) edge [kEdge] (wP);
+\draw (wP) edge [kEdge] (paraNP);
+
+\draw (w1) edge [kEdge] (a2);
+\draw (a2) edge [kEdge,loosely dashed] (aStar);
+\draw (aStar) edge [kEdge] (XP);
+
+%\draw (wSAT) edge [kEdge] (aStar);
+\draw (wP) edge [kEdge] (XP);
+
+% Das Parametrisierte Probleme
+\node (paramProbl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=north east]
+at ([yshift=63.5cm] SatzAlternation.north east) 
+{
+	\textbf{Parameterized Problems} \nodepart{second} 
+	A tuple $(Q,\kappa)$ is a parameterized problem,\\ if $Q\subseteq\Sigma^\ast$ and $\kappa:\Sigma^\ast\to\mathbb{N}$ is computable in polynomial time.
+};
+
+%%%%%%%%%%%%%%
+% Logik & Komplexität
+%%%%%%%%%%%%%%
+
+
+\def\mydist{1.1cm}
+
+\node (lAC0D) [anchor=south east] at ([xshift=-.0cm, yshift=-21cm]paramProbl.south east) {$\mathbf{FO(+,\times)}$};
+\node (lREGD) [anchor=south east] at ([yshift=-.4cm]lAC0D.north east) {$\mathbf{MSO}$};
+\node (lTC0D) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lAC0D.north east) {$\mathbf{FO(+,\times)+C}$};
+\node (lLD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lTC0D.north east) {$\mathbf{DTC}$};
+\node (lNLD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lLD.north east) {$\mathbf{TC}$};
+\node (lPD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNLD.north east) {$\mathbf{HornESO, LFP}$};
+\node (lNPD) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lPD.north east) {$\mathbf{ESO}$};
+\node (lPSPACED) [anchor=south east] at ([xshift=0cm, yshift=\mydist]lNPD.north east) {$\mathbf{PFP}$};
+
+\node (lAC0) [anchor=center] at ([xshift=-12cm]lAC0D.east) {$\mathbf{AC^0}$};
+\node (lREG) [anchor=center] at ([xshift=-14.7cm]lREGD.east) {$\mathbf{REG}$};
+\node (lTC0) [anchor=center] at ([xshift=-12cm]lTC0D.east) {$\mathbf{TC^0}$};
+\node (lL) [anchor=center] at ([xshift=-12cm]lLD.east) {$\mathbf{L}$};
+\node (lNL) [anchor=center] at ([xshift=-12cm]lNLD.east) {$\mathbf{NL}$};
+\node (lP) [anchor=center] at ([xshift=-12cm]lPD.east) {$\mathbf{P}$};
+\node (lNP) [anchor=center] at ([xshift=-12cm]lNPD.east) {$\mathbf{NP}$};
+\node (lPSPACE) [anchor=center] at ([xshift=-12cm]lPSPACED.east) {$\mathbf{PSPACE}$};
+
+
+\node (ltitel) [anchor=north east] at ([xshift=-.0cm, yshift=0cm]paramProbl.south east) {\fontsize{50}{33}\selectfont \textbf{Complexity \& Logic}};
+
+\draw (lAC0) edge [kEdge] (lTC0);
+\draw (lTC0) edge [kEdge] (lL);
+\draw (lREG) edge [kEdge] (lL);
+\draw (lL) edge [kEdge] (lNL);
+\draw (lNL) edge [kEdge] (lP);
+\draw (lP) edge [kEdge] (lNP);
+\draw (lNP) edge [kEdge] (lPSPACE);
+
+\draw (lAC0) edge [kEdge,loosely dashed] (lAC0D);
+\draw (lTC0) edge [kEdge,loosely dashed] (lTC0D);
+\draw (lREG) edge [kEdge,loosely dashed] (lREGD);
+\draw (lL) edge [kEdge,loosely dashed] (lLD);
+\draw (lNL) edge [kEdge,loosely dashed] (lNLD);
+\draw (lP) edge [kEdge,loosely dashed] (lPD);
+\draw (lNP) edge [kEdge,loosely dashed] (lNPD);
+\draw (lPSPACE) edge [kEdge,loosely dashed] (lPSPACED);
+
+% Logiken und Komplexitätsklassen
+\node (logikACompl) [satz, fill=yellow!40,text width=\satzW, minimum width=\satzWmin, anchor=south east]
+at ([yshift=-1mm] PCP.north east) 
+{
+	\textbf{Complexity Classes and Logic} \nodepart{second} 
+	A logic $\mathcal{L}$ has complexity $\mathcal{C}$, if for each sentence $\varphi\in\mathcal{L}$ it holds $ \{\ \text{enc}(\mathfrak{A})\ |\ \mathfrak{A}\mathfrak\models\varphi\ \}\in\mathcal{C} $.
+	
+};
+
+\coordinate (temp) at (logikACompl.north west -| ltitel.north west);
+
+\draw [line width=1mm] ([xshift=.3cm]ltitel.north west) -- ([xshift=.3cm]temp);
+
+%%%%%%%%%%%%%%%%%%%%%%%
+% Kleine Hierarchie
+%%%%%%%%%%%%%%%%%%%%%%%
+\fontsize{30}{25}\selectfont
+
+\filldraw [fill=blue!50,line width=1mm] ([xshift=0.5\pgflinewidth,yshift=-0.5\pgflinewidth]TSP.south west) -- ([xshift=-0.5\pgflinewidth,yshift=-0.5\pgflinewidth]TSP.south east) -- ([xshift=-0.5\pgflinewidth,yshift=0.5\pgflinewidth]HORNSAT.north east) -- ([xshift=0.5\pgflinewidth,yshift=0.5\pgflinewidth]HORNSAT.north west) -- cycle ;
+\node (time) [anchor=south] at (HORNSAT.north) {$\mathbf{TIME(f)}$};
+\node (coNTime) [hier,above left =of time] {$\mathbf{coNTIME(f)}$};
+\node (NTime) [hier,above right =of time] {$\mathbf{NTIME(f)}$};
+\node (space) [hier,above right =of coNTime] {$\mathbf{SPACE(f)}$};
+\node (nspace) [hier,above =of space] {$\mathbf{NSPACE(f)}=\mathbf{coNSPACE(f)}$};
+\node (time2e) [hier,above =of nspace] {$\mathbf{TIME(2^{\mathcal{O}(f)})}$};
+\node (space2) [hier,right =of time2e] {$\mathbf{SPACE(f^2)}$};
+
+\draw (time) [kEdge] edge (coNTime) ;
+\draw (time) [kEdge] edge (NTime) ;
+\draw (coNTime) [kEdge] edge (space) ;
+\draw (NTime) [kEdge] edge (space) ;
+\draw (space) [kEdge] edge (nspace) ;
+\draw (nspace) [kEdge] edge (time2e) ;
+\draw (nspace) [kEdge] edge (space2) ;
+
+
+\fontsize{35}{25}\selectfont
+
+\node (sn) [anchor=north west] at (TSP.south west) {\textbf{For\boldmath\ $f(n)\geq\log(n)$}};
+
+\fontsize{55}{33}\selectfont
+\node (littleOverview) [rotate=90, anchor=south west,align=left] at (HORNSAT.north east) {\fontsize{55}{33}\selectfont \textbf{Small}\\\textbf{hierarchy}};
+
+\end{tikzpicture}
+	
+\end{document}
