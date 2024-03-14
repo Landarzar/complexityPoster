@@ -1,8 +1,10 @@
 \documentclass{scrartcl}
+%\documentclass{article}
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
+%\usepackage{helvet}
 %\usepackage[scaled=0.85]{beramono}
 \usepackage{ucs}
 \usepackage{cite}
@@ -10,7 +12,12 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage[ngerman]{babel}
+%\usepackage[ngerman]{babel}
+\usepackage[english]{babel}
+\usepackage{bold-extra}
+\usepackage{fix-cm}
+%\DeclareFontShape{T1}{lmr}{b}{sc}{<->ssub*cmr/bx/sc}{}
+%\DeclareFontShape{T1}{lmr}{bx}{sc}{<->ssub*cmr/bx/sc}{}
 \usepackage{enumerate}
 \usepackage{wrapfig}
 \usepackage{caption}
@@ -27,6 +34,8 @@
 \usetikzlibrary{shadows,calc,backgrounds}
 
 \renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\newcommand{\problemFont}{\scshape}
 
 \newcommand{\parity}{\uplus}
 
@@ -51,9 +60,9 @@
 %\draw [very thick,draw,black] ([xshift=1.5cm,yshift=1.5cm] current page.south west) -- ([xshift=1.5cm,yshift=-3.5cm] current page.north west) -- ([xshift=-1.5cm,yshift=-3.5cm] current page.north east) -- ([xshift=-1.5cm,yshift=1.5cm] current page.south east) -- cycle;
 
 % Titel
-\node  [name=titel,anchor=north east] at ([xshift=-1.5cm,yshift=-3.5cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Complexity Theory};
+\node  [name=titel,anchor=north east] at ([xshift=-1.5cm,yshift=-2.0cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Complexity Theory};
 
-\node [font=\normalsize,anchor=north east,align=left] at (komplx.south east) {Poster by Dr. Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen); based on a lecture by Prof. Dr. Schwentick (LogiDAC, TU Dortmund University).};
+\node [font=\Large,anchor=north east,align=right] at (komplx.south east) {Poster by Dr. Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen)\\based on a lecture by Prof. Dr. Schwentick (LogiDAC, TU Dortmund University)};
 \tikzstyle{hier}=[node distance=1cm]
 
 
@@ -100,7 +109,7 @@
 
 \node (PSPACE) [klass,above of= PH] {$\mathbf{PSPACE}$} ;
 \node (EXPTIME) [klass,above of= PSPACE]{$\mathbf{EXP}$} ;
-\node (ELEMENTARY) [klass,above of= EXPTIME]{$\mathbf{ELEMENTARY}$} ;
+\node (ELEMENTARY) [klass,node distance=5cm,above of= EXPTIME]{$\mathbf{ELEMENTARY}$} ;
 \node (PR) [klass,above of= ELEMENTARY]{$\mathbf{PR}$} ;
 \node (R) [klass,above of= PR]{$\mathbf{R}$} ;
 \node (coRE) [klass,above right of= R] {$\mathbf{coRE} $};
@@ -202,7 +211,7 @@
 \node (ADD) [defi,rectangle split parts=1,text width=\probW,anchor=south west] 
 at ([xshift=1.5cm, yshift=1.5cm] current page.south west) 
 { 
-	\textbf{\textsc{Addition}}  \hfill in $\mathbf{AC^0}$
+	{{\problemFont Addition}}  \hfill in $\mathbf{AC^0}$
 };
 \draw (AC0) [line width=1mm] edge (ADD.east);
 
@@ -211,7 +220,7 @@ at ([xshift=1.5cm, yshift=1.5cm] current page.south west)
 \node (MULT) [defi2,rectangle split parts=1,text width=\probW,anchor=south west] 
 at (ADD.north west) 
 { 
-	\textbf{\textsc{Multiplikation}}  \hfill $\mathbf{TC^0}$-C
+	{{\problemFont Multiplication}}  \hfill $\mathbf{TC^0}$-C
 };
 \draw (TC0) [line width=1mm] edge (MULT.east);
 
@@ -220,7 +229,7 @@ at (ADD.north west)
 \node (FVP) [defi,text width=\probW,anchor=south west]
 at (MULT.north west) 
 { 
-	\textbf{\textsc{FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
+	{{\problemFont FormulaValueProblem}}  \hfill $\mathbf{NC^1}$-C\nodepart{second} 
 	\textbf{Input:} Variable free Boolean formula $B$ \newline
 	\textbf{Decision:} Does $B$ evaluate to true? 
 };
@@ -231,7 +240,7 @@ at (MULT.north west)
 \node (UREACH) [defi2,text width=\probW,anchor=south west] 
 at (FVP.north west) 
 { 
-	\textbf{\textsc{UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
+	{{\problemFont UREACH} \src{(KT 00/02)}} \hfill $\mathbf{L}$-C  \nodepart{second} 
 	\textbf{Input:} Undirected graph $G{=}(V,E)$ and\,${s,t\,{\in} V}$ \newline
 	\textbf{Decision:} Is there a path from $s$ to $t$ in $G$?
 };
@@ -242,7 +251,7 @@ at (FVP.north west)
 \node (REACH) [defi,text width=\probW,anchor=south west] 
 at (UREACH.north west) 
 { 
-	\textbf{\textsc{REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
+	{{\problemFont REACH} \src{(KT 00/02)}} \hfill $\mathbf{NL}$-C  \nodepart{second} 
 	\textbf{Input:} Graph $G=(V,E)$ and ${s,t\in V}$ \newline
 	\textbf{Decision:} Is there a path from $s$ to $t$ in $G$?
 };
@@ -252,7 +261,7 @@ at (UREACH.north west)
 \node (acyclicCSP) [defi2,text width=\probW,anchor=south west] 
 at (REACH.north west) 
 { 
-	\textbf{\textsc{AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
+	{{\problemFont AcyclicCS} \src{(KT 00/02)}} \hfill $\mathbf{LOGCFL}$-C  \nodepart{second} 
 	\textbf{Input:} Variables $V$, domain $U$, constraints $C$, such that $ (V,C) $ is acyclic \newline
 	\textbf{Decision:} Is there a solution $\sigma\subseteq V\times U$ such that $\sigma(\mathcal{C})$ is true?
 };
@@ -264,7 +273,7 @@ at (REACH.north west)
 \node (DET) [defi,rectangle split parts=1,text width=\probW, anchor=south west] 
 at (acyclicCSP.north west) 
 { 
-	\textbf{\textsc{Determinant}} \hfill in $\mathbf{NC^2}$
+	{{\problemFont Determinant}} \hfill in $\mathbf{NC^2}$
 };
 \draw (NC2) [line width=1mm] edge [] (DET.east);
 
@@ -272,7 +281,7 @@ at (acyclicCSP.north west)
 \node (HORNSAT) [defi2,text width=\probW,anchor=south west]
 at (DET.north west) 
 {
-	\textbf{\textsc{HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
+	{{\problemFont HornSAT}} \hfill $\mathbf{P}$-C  \nodepart{second} 
 	\textbf{Input:} Finite set of Horn-clauses $K$ \newline
 	\textbf{Decision:} Is $K$ satisfiable?
 };
@@ -294,9 +303,9 @@ at (DET.north west)
 %\draw (RE) [line width=1mm] edge [] (RICE.west);
 
 \node (TMHALT) [defi,rectangle split parts=1,text width=\probW, anchor=north west] 
-at ([xshift=1.5cm,yshift=-3.5cm] current page.north west) 
+at ([xshift=1.5cm,yshift=-1.5cm] current page.north west) 
 { 
-	\textbf{\textsc{TM-Halt}} \hfill in $\mathbf{RE}$
+	{\textsc{TM-Halt}} \hfill in $\mathbf{RE}$
 };
 \draw (RE) [line width=1mm] edge [] (TMHALT.east);
 
@@ -304,7 +313,7 @@ at ([xshift=1.5cm,yshift=-3.5cm] current page.north west)
 \node (FOString) [defi2,text width=\probW, anchor=north west] 
 at  (TMHALT.south west) 
 {
-	\textbf{\textsc{SAT-FO-String}}  \hfill in $\mathbf{R}$
+	{{\problemFont SAT-FO-String}}  \hfill in $\mathbf{R}$
 	\nodepart{second} 	
 %	\begin{description}
 %	\item[Input: ] Eine PL Formel $\varphi$ über Strings
@@ -319,7 +328,7 @@ at  (TMHALT.south west)
 \node (2PTiling) [defi,text width=\probW, anchor=north west] 
 at  (FOString.south west) 
 {
-	\textbf{\textsc{2-PlayerCorridorTiling}}  \hfill $\mathbf{EXP}$-C 
+	{{\problemFont 2-PlayerCorridorTiling}}  \hfill $\mathbf{EXP}$-C 
 	\nodepart{second} 
 	\textbf{Input:} Tilings $T$ and integer $k$ (unary) \newline
 	\textbf{Decision:} Does player one has a winning strategy in the tiling game?
@@ -330,7 +339,7 @@ at  (FOString.south west)
 \node (QBF) [defi2,text width=\probW, anchor=north west] 
 at  (2PTiling.south west) 
 {
-	\textbf{\textsc{QBF}}  \hfill $\mathbf{PSPACE}$-C 
+	{{\problemFont QBF}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
 	\textbf{Input:} Quantified Boolean formula $\varphi$\linebreak (in prenex normal form and CNF)\newline
 	\textbf{Decision:} Is $\varphi$ satisfiable?
@@ -343,7 +352,7 @@ at  (2PTiling.south west)
 \node (2Tiling) [defi,text width=\probW, anchor=north west] 
 at  (QBF.south west) 
 {
-	\textbf{\textsc{CorridorTiling}}  \hfill $\mathbf{PSPACE}$-C 
+	{{\problemFont CorridorTiling}}  \hfill $\mathbf{PSPACE}$-C 
 	\nodepart{second} 
 	\textbf{Input:} Tilings $T$ and integer $k$ (unary) \newline
 	\textbf{Decision:} Is there a $k\times l$ tiling for $T$?
@@ -354,7 +363,7 @@ at  (QBF.south west)
 \node (SAT-UNSAT) [defi2,text width=\probW,anchor=north west]
 at (2Tiling.south west) 
 {
-	\textbf{\textsc{SAT-UNSAT}} \hfill $\mathbf{DP}$-C  \nodepart{second} 
+	{{\problemFont SAT-UNSAT}} \hfill $\mathbf{DP}$-C  \nodepart{second} 
 	\textbf{Input:} Boolean formulas $\varphi_1,\varphi_2$ in CNF \newline
 	\textbf{Decision:} Is $\varphi_1$ satisfiable and\,\( \varphi_2 \)\,unsatisfiable?
 };
@@ -364,7 +373,7 @@ at (2Tiling.south west)
 \node (SAT) [defi2,text width=\probW,anchor=north west]
 at (SAT-UNSAT.south west) 
 {
-	\textbf{\textsc{SAT}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	{{\problemFont SAT}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
 	\textbf{Input:} Boolean formula $\varphi$ in CNF \newline
 	\textbf{Decision:} Is $\varphi$ satisfiable?
 };
@@ -374,7 +383,7 @@ at (SAT-UNSAT.south west)
 \node (NPtiling) [defi,text width=\probW,anchor=north west]
 at (SAT.south west) 
 {
-	\textbf{\textsc{Tiling}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	{{\problemFont Tiling}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
 	\textbf{Input:} Tilings $T$ und integers $c,r$ (unary) \newline
 	\textbf{Decision:} Is there a $c\times r$ tiling for $T$?
 };
@@ -384,7 +393,7 @@ at (SAT.south west)
 \node (TSP) [defi2,text width=\probW,anchor=north west]
 at (NPtiling.south west) 
 {
-	\textbf{\textsc{TSP}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
+	{{\problemFont TSP}} \hfill $\mathbf{NP}$-C  \nodepart{second} 
 	\textbf{Input:} Weighted Graph $G$ and $k\in \mathbb{N}$ \newline
 	\textbf{Decision:} Is there a circle in $G$  with a weight smaller or equal to $ k$ that visits all nodes?
 };
@@ -450,8 +459,8 @@ at (SatzImmerman.north east)
 {
 	\textbf{Theorem} \hfill Chandra, Kozen, Stockmeyer   \nodepart{second} 
 	\begin{enumerate}[(a)]
-	\item Ist $S(n)=\Omega(\log n)$, so gilt $\mathbf{ASPACE(S)\subseteq TIME(2^{\mathcal{O}(S)})}$
-	\item Ist $T(n)=\Omega(n)$, so gilt $\mathbf{TIME(T)\subseteq ASPACE(\log T)}$
+	\item For $S(n)=\Omega(\log n)$ holds: $\mathbf{ASPACE(S)\subseteq TIME(2^{\mathcal{O}(S)})}$
+	\item For $T(n)=\Omega(n)$ holds: $\mathbf{TIME(T)\subseteq ASPACE(\log T)}$
 	\end{enumerate}
 };
 
@@ -482,10 +491,10 @@ at (SatzImmerman.north east)
 \coordinate (PTAS2APX) at ($ (APX) !.5! (PTAS) $);
 \coordinate (FPTAS2PTAS) at ($ (PTAS) !.5! (FPTAS) $);
 \coordinate (PO2FPTAS) at ($ (FPTAS) !.5! (PO) $);
-\node (optTSP)        [anchor=east] at ([xshift=11.5cm] APX2NPO) {\textbf{\textsc{TSP}}};
-\node (optMaxSAT)     [anchor=east] at ([xshift=11.5cm] PTAS2APX) {\textbf{\textsc{MAX-SAT}}};
-\node (optScheduling) [anchor=east] at ([xshift=11.5cm] FPTAS2PTAS) {\textbf{\textsc{Small-Scheduling}}};
-\node (optRucksack)   [anchor=east] at ([xshift=11.5cm] PO2FPTAS) {\textbf{\textsc{Rucksack}}};
+\node (optTSP)        [anchor=east] at ([xshift=11.5cm] APX2NPO) {{{\problemFont TSP}}};
+\node (optMaxSAT)     [anchor=east] at ([xshift=11.5cm] PTAS2APX) {{{\problemFont MAX-SAT}}};
+\node (optScheduling) [anchor=east,text width=7cm] at ([xshift=11.5cm] FPTAS2PTAS) {{{\problemFont Small-\\[0.1em]Scheduling}}};
+\node (optRucksack)   [anchor=east] at ([xshift=11.5cm] PO2FPTAS) {{{\problemFont Backpack}}};
  
 \draw (APX2NPO) edge [kEdge,loosely dashed] (optTSP.west);
 \draw (PTAS2APX) edge [kEdge,loosely dashed] (optMaxSAT.west);
@@ -532,7 +541,7 @@ at ([yshift=-1mm]SatzAlternation.north east)
 %\filldraw [fill=red!30] (SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north west) -- ([yshift=16cm] SatzAlternation.north east) -- (SatzAlternation.north east) -- cycle ;
 
 \node (proofsystem) [rotate=90, anchor=north west] at (ClassOP.north west-| SatzAlternation.north west) {
-	\fontsize{55}{33}\selectfont \textbf{Proof systems}};
+	\fontsize{55}{33}\selectfont \textbf{Proof Systems}};
 
 \node (npchar) [anchor=south west] at ([xshift=2.5cm,yshift=0cm]proofsystem.north west)  {$\mathbf{NP}=\mathbf{PCP(log,poly)}=\mathbf{PCP(0,poly)}=\mathbf{PCP(log,1)}$};
 \node (mBPP) at ([xshift=1.2cm,yshift=1cm] npchar.north west) {$\mathbf{BPP}$};
@@ -703,7 +712,7 @@ at ([yshift=-1mm] PCP.north east)
 \node (sn) [anchor=north west] at (TSP.south west) {\textbf{For\boldmath\ $f(n)\geq\log(n)$}};
 
 \fontsize{55}{33}\selectfont
-\node (littleOverview) [rotate=90, anchor=south west,align=left] at (HORNSAT.north east) {\fontsize{55}{33}\selectfont \textbf{Small}\\\textbf{hierarchy}};
+\node (littleOverview) [rotate=90, anchor=south west,align=left] at (HORNSAT.north east) {\fontsize{55}{33}\selectfont \textbf{Small}\\[0.2em]\textbf{Hierarchy}};
 
 \end{tikzpicture}
 	
