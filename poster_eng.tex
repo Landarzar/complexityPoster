@@ -46,8 +46,10 @@
 \begin{tikzpicture}[node distance=\ND,thick, remember picture, overlay]
 \tikzstyle{defi}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!60]
 \tikzstyle{defi2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=green!40]
-\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!50]
-\tikzstyle{satz2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!30]
+\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!50,inner sep=12pt]
+\tikzstyle{satz2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!30,inner sep=12pt]
+%\tikzstyle{satz}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!50]
+%\tikzstyle{satz2}=[rectangle, draw,rectangle split, rectangle split parts=2,text width=8cm,line width=1mm, fill=blue!30]
 \tikzstyle{klass}=[]
 \tikzstyle{klassNP}=[node distance=5cm]
 \tikzstyle{kEdge}=[line width=2mm]
@@ -60,10 +62,19 @@
 %\draw [very thick,draw,black] ([xshift=1.5cm,yshift=1.5cm] current page.south west) -- ([xshift=1.5cm,yshift=-3.5cm] current page.north west) -- ([xshift=-1.5cm,yshift=-3.5cm] current page.north east) -- ([xshift=-1.5cm,yshift=1.5cm] current page.south east) -- cycle;
 
 % Titel
-\node  [name=titel,anchor=north east] at ([xshift=-1.5cm,yshift=-2.0cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Complexity Theory};
+\node  [name=titel,anchor=north east] at ([xshift=-1.75cm,yshift=-1.7cm]current page.north east) (komplx) {\fontsize{123}{50}\selectfont Complexity Theory};
 
-\node [font=\Large,anchor=north east,align=right] at (komplx.south east) {Poster by Dr. Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen)\\based on a lecture by Prof. Dr. Schwentick (LogiDAC, TU Dortmund University)};
 \tikzstyle{hier}=[node distance=1cm]
+
+%\node (POSTERBY) [font=\Large,anchor=north east,align=right] at ([yshift=-0.25cm]komplx.south east) {{\LARGE Poster by Dr.\,Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen) -- \texttt{https://kai-sauerwald.de}}\\based on a lecture by Prof.\,Dr.\,Schwentick(TU Dortmund University)};
+%\node (PAGE_QR) [anchor=north east] at ([xshift=-0cm]POSTERBY.south east)  {\includegraphics[height=2.25cm]{qr-code_complexity.pdf}};
+%\node (LOGO_AIG) [anchor=south east] at ([xshift=-0.25cm]PAGE_QR.south west)  {\includegraphics[height=2.25cm]{AIG_inverted.pdf}};
+%\node (LOGO_FUH) [anchor=south east] at ([xshift=-0.25cm]LOGO_AIG.south west)  {\includegraphics[height=2.25cm]{logo_hagen.pdf}};
+
+\node (POSTERBY) [font=\Large,anchor=south east,align=right] at ([xshift=-1.5cm,yshift=1.25cm] current page.south east) {{\LARGE Poster by Dr.\,Kai Sauerwald (Artificial Intelligence Group, FernUniversität in Hagen) -- \texttt{https://kai-sauerwald.de}}\\based on a lecture by Prof.\,Dr.\,Schwentick(TU Dortmund University)};
+\node (PAGE_QR) [anchor=south east] at ([xshift=-0cm]POSTERBY.north east)  {\includegraphics[height=2.25cm]{qr-code_complexity.pdf}};
+\node (LOGO_AIG) [anchor=south east] at ([xshift=-0.25cm]PAGE_QR.south west)  {\includegraphics[height=2.25cm]{AIG.pdf}};
+\node (LOGO_FUH) [anchor=south east] at ([xshift=-0.25cm]LOGO_AIG.south west)  {\includegraphics[height=2.25cm]{logo_hagen.pdf}};
 
 
 %%%%%%%%%%%%%%%%%
@@ -419,7 +430,7 @@ at (NPtiling.south west)
 
 
 \node (TimeHierarchie) [satz,text width=\satzW, minimum width=\satzWmin, anchor=south east] 
-at ([xshift=-1.5cm,yshift=1.5cm] current page.south east) 
+at ([xshift=-1.5cm,yshift=5.5cm] current page.south east) 
 {
 	\textbf{Time hierarchy theorem} \hfill Hartmanis, Stearns  \nodepart{second} 
 	For  time constructible $f,g$ with 
